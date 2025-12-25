@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>गीता प्रेस विक्रेता पंजीकरण फॉर्म</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 20px; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #ff6b35; }
+        .header h1 { color: #d35400; font-size: 28px; margin-bottom: 10px; }
+        .header h2 { color: #555; font-size: 18px; font-weight: normal; }
+        .date-tally { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .section { margin-bottom: 30px; }
+        .section-title { background: #ff6b35; color: white; padding: 12px 20px; margin-bottom: 20px; border-radius: 5px; font-size: 18px; font-weight: bold; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #333; font-weight: 600; }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"], textarea { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px; transition: border-color 0.3s; }
+        input:focus, textarea:focus { outline: none; border-color: #ff6b35; }
+        textarea { min-height: 80px; resize: vertical; }
+        .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .checkbox-group { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 8px; }
+        .checkbox-group label { display: flex; align-items: center; font-weight: normal; }
+        .checkbox-group input[type="checkbox"], .checkbox-group input[type="radio"] { width: auto; margin-right: 8px; }
+        .document-checklist { background: #f8f9fa; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
+        .document-checklist h3 { color: #333; margin-bottom: 15px; font-size: 16px; }
+        .document-item { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; padding: 15px; background: white; border-radius: 5px; border: 1px solid #e0e0e0; }
+        .document-item > div:first-child { display: flex; align-items: center; }
+        .document-item input[type="checkbox"] { width: auto; margin-right: 10px; }
+        .document-item label { font-weight: normal; margin-bottom: 0; flex: 1; }
+        .file-input { padding: 8px; border: 2px dashed #ddd; border-radius: 5px; font-size: 14px; cursor: pointer; transition: border-color 0.3s; background: #fafafa; }
+        .file-input:hover { border-color: #ff6b35; }
+        .file-input::-webkit-file-upload-button { background: #ff6b35; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; margin-right: 10px; }
+        .file-input::-webkit-file-upload-button:hover { background: #d35400; }
+        .file-name { font-size: 12px; color: #1e8e3e; font-weight: 600; display: none; }
+        .file-name.show { display: block; }
+        .declaration { background: #fff3cd; padding: 20px; border-radius: 5px; border-left: 4px solid #ffc107; }
+        .declaration h3 { color: #856404; margin-bottom: 15px; }
+        .declaration ol { margin-left: 20px; }
+        .declaration li { margin-bottom: 10px; color: #333; }
+        .signature-section { margin-top: 30px; padding-top: 20px; border-top: 2px solid #ddd; }
+        .signature-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+        .submit-btn { background: #ff6b35; color: white; padding: 15px 40px; border: none; border-radius: 5px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 20px; transition: background 0.3s; }
+        .submit-btn:hover { background: #d35400; }
+        .submit-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .note { color: #666; font-size: 12px; font-style: italic; }
+        .status-msg { display: none; font-size: 12px; margin-top: 4px; }
+        .loading { color: #673ab7; }
+        .error { color: #d93025; }
+        .success { color: #1e8e3e; }
+        .submit-status { margin-top: 10px; padding: 10px; border-radius: 5px; display: none; }
+        @media print { body { background: white; padding: 0; } .container { box-shadow: none; padding: 20px; } .submit-btn { display: none; } }
+        @media (max-width: 768px) { .container { padding: 20px; } .row, .date-tally { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>गीता प्रेस गोरखपुर</h1>
+            <h2>दुकानदार/खुदरा विक्रेता पंजीकरण फॉर्म</h2>
+            <p style="color: #666; margin-top: 10px;">गीता प्रेस प्रकाशनों की बिक्री हेतु</p>
+        </div>
+        <div class="date-tally">
+            <div class="form-group">
+                <label>आवेदन दिनांक:</label>
+                <input type="date" name="application_date" id="application_date" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
+            </div>
+            <div class="form-group">
+                <label>टैली कोड: <span class="note">(केवल कार्यालय उपयोग हेतु)</span></label>
+                <input type="text" name="tally_code" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title">स्वामी/साझेदार/निदेशक की व्यक्तिगत जानकारी</div>
+           
+            <div class="form-group">
+                <label>पूरा नाम:</label>
+                <input type="text" name="full_name" required>
+            </div>
+            <div class="form-group">
+                <label>पिता/पति का नाम:</label>
+                <input type="text" name="father_husband_name">
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label>आधार संख्या:</label>
+                    <input type="text" name="aadhaar" placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
+                </div>
+                <div class="form-group">
+                    <label>पैन संख्या:</label>
+                    <input type="text" name="pan_personal" placeholder="XXXXXXXXXX" maxlength="10">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label>मोबाइल नंबर:</label>
+                    <input type="tel" name="mobile" placeholder="+91 XXXXXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label>व्हाट्सएप नंबर:</label>
+                    <input type="tel" name="whatsapp" placeholder="+91 XXXXXXXXXX">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>ईमेल पता:</label>
+                <input type="email" name="email">
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title">व्यवसाय की जानकारी</div>
+           
+            <div class="form-group">
+                <label>दुकान/व्यवसाय का नाम:</label>
+                <input type="text" name="shop_name" required>
+            </div>
+            <div class="form-group">
+                <label>व्यवसाय का प्रकार:</label>
+                <div class="checkbox-group">
+                    <label><input type="radio" name="business_type" value="proprietorship"> स्वामित्व</label>
+                    <label><input type="radio" name="business_type" value="partnership"> साझेदारी</label>
+                    <label><input type="radio" name="business_type" value="private_limited"> प्राइवेट लिमिटेड</label>
+                    <label><input type="radio" name="business_type" value="llp"> LLP</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>दुकान का पूर्ण पता:</label>
+                <textarea name="shop_address" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>पिनकोड:</label>
+                <input type="text" name="pincode" id="pincode" maxlength="6" pattern="[0-9]{6}" placeholder="6 अंकों का पिनकोड दर्ज करें">
+                <div class="status-msg loading" id="pincodeLoading">🔄 स्थान विवरण प्राप्त कर रहे हैं...</div>
+                <div class="status-msg error" id="pincodeError">अमान्य पिनकोड या विवरण प्राप्त करने में असमर्थ</div>
+                <div class="status-msg success" id="pincodeSuccess">✓ स्थान विवरण लोड किया गया</div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label>शहर:</label>
+                    <input type="text" name="city" id="city" placeholder="शहर दर्ज करें">
+                </div>
+                <div class="form-group">
+                    <label>राज्य:</label>
+                    <input type="text" name="state" id="state" placeholder="राज्य दर्ज करें">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label>पैन संख्या:</label>
+                    <input type="text" name="pan_business" placeholder="XXXXXXXXXX" maxlength="10">
+                </div>
+                <div class="form-group">
+                    <label>जीएसटी संख्या (GSTIN):</label>
+                    <input type="text" name="gstin" maxlength="15">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label>स्थापना वर्ष:</label>
+                    <input type="number" name="establishment_year" min="1900" max="2025">
+                </div>
+                <div class="form-group">
+                    <label>कुल दुकान क्षेत्रफल (वर्ग फुट):</label>
+                    <input type="number" name="shop_area">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>दुकान पंजीकरण/लाइसेंस संख्या:</label>
+                <input type="text" name="shop_license">
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title">बैंकिंग एवं भुगतान विवरण</div>
+           
+            <div class="row">
+                <div class="form-group">
+                    <label>बैंक का नाम:</label>
+                    <input type="text" name="bank_name">
+                </div>
+                <div class="form-group">
+                    <label>शाखा का नाम:</label>
+                    <input type="text" name="branch_name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>खाताधारक का नाम:</label>
+                <input type="text" name="account_holder">
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label>खाता संख्या:</label>
+                    <input type="text" name="account_number">
+                </div>
+                <div class="form-group">
+                    <label>IFSC कोड:</label>
+                    <input type="text" name="ifsc" maxlength="11">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>खाते का प्रकार:</label>
+                <div class="checkbox-group">
+                    <label><input type="radio" name="account_type" value="savings"> बचत</label>
+                    <label><input type="radio" name="account_type" value="current"> चालू</label>
+                </div>
+            </div>
+        </div>
+       
+        <div class="declaration">
+            <h3>घोषणा एवं शर्तें</h3>
+            <p style="margin-bottom: 15px;"><strong>मैं एतद्द्वारा घोषणा करता/करती हूँ कि:</strong></p>
+            <ol>
+                <li>ऊपर दी गई सभी जानकारी मेरी जानकारी के अनुसार सत्य एवं सही है</li>
+                <li>मैं गीता प्रेस के प्रकाशनों को अधिकतम खुदरा मूल्य (MRP) से अधिक पर नहीं बेचूँगा/बेचूँगी</li>
+                <li>मैं अपनी दुकान में गीता प्रेस की पुस्तकों का उचित स्टॉक एवं प्रदर्शन बनाए रखूँगा/रखूँगी</li>
+                <li>मैं गीता प्रेस के प्रकाशनों की नकली या अनधिकृत प्रतियाँ नहीं बेचूँगा/बेचूँगी</li>
+                <li>मैं समझता/समझती हूँ कि विक्रेता लाभ एवं छूट गीता प्रेस की नीति के अनुसार होगी</li>
+                <li>मैं सहमत शर्तों के अनुसार समय पर भुगतान करूँगा/करूँगी</li>
+                <li>मैं गीता प्रेस द्वारा सुझाई गई प्रचार गतिविधियों में भाग लूँगा/लूँगी</li>
+                <li>मैं गीता प्रेस को दी गई जानकारी सत्यापित करने का अधिकार देता/देती हूँ</li>
+                <li>मैं समय-समय पर गीता प्रेस द्वारा निर्धारित सभी नियमों एवं शर्तों का पालन करने के लिए सहमत हूँ</li>
+            </ol>
+        </div>
+        <div class="signature-section">
+            <div class="signature-row">
+                <div class="form-group">
+                    <label>आवेदक का नाम:</label>
+                    <input type="text" name="applicant_name" required>
+                </div>
+            </div>
+            <div class="signature-row">
+                <div class="form-group">
+                    <label>दिनांक:</label>
+                    <input type="date" name="declaration_date" id="declaration_date" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
+                </div>
+                <div class="form-group">
+                    <label>स्थान:</label>
+                    <input type="text" name="place">
+                </div>
+            </div>
+        </div>
+        <div class="submit-status" id="submitStatus"></div>
+        <button type="submit" class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">फॉर्म जमा करें</button>
+    </div>
+    <script>
+        // Replace with your actual Google Apps Script Web App URL
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZCn12QwqRBNqIojzopfBMNVLV2vq8zaIA01V4ONYxWpIQMk9YuyyQlEW3HCpK1H8J/exec'; // Replace YOUR_SCRIPT_ID with your actual script ID
+
+        // Set current date on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('application_date').value = today;
+            document.getElementById('declaration_date').value = today;
+           
+            // Auto-fill from URL parameters
+            autoFillFromURL();
+        });
+        // Field mapping for URL parameters
+        const fieldMapping = {
+            'full_name': 'full_name',
+            'name': 'full_name',
+            'father_name': 'father_husband_name',
+            'father_husband_name': 'father_husband_name',
+            'aadhaar': 'aadhaar',
+            'aadhar': 'aadhaar',
+            'pan_personal': 'pan_personal',
+            'pan': 'pan_personal',
+            'mobile': 'mobile',
+            'whatsapp': 'whatsapp',
+            'email': 'email',
+            'shop_name': 'shop_name',
+            'business_name': 'shop_name',
+            'business_type': 'business_type',
+            'shop_address': 'shop_address',
+            'address': 'shop_address',
+            'pincode': 'pincode',
+            'pin': 'pincode',
+            'city': 'city',
+            'state': 'state',
+            'pan_business': 'pan_business',
+            'gstin': 'gstin',
+            'gst': 'gstin',
+            'establishment_year': 'establishment_year',
+            'year': 'establishment_year',
+            'shop_area': 'shop_area',
+            'area': 'shop_area',
+            'shop_license': 'shop_license',
+            'license': 'shop_license',
+            'bank_name': 'bank_name',
+            'bank': 'bank_name',
+            'branch_name': 'branch_name',
+            'branch': 'branch_name',
+            'account_holder': 'account_holder',
+            'holder': 'account_holder',
+            'account_number': 'account_number',
+            'account': 'account_number',
+            'ifsc': 'ifsc',
+            'account_type': 'account_type',
+            'applicant_name': 'applicant_name',
+            'place': 'place',
+            'tally_code': 'tally_code'
+        };
+        function autoFillFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let prefilledCount = 0;
+           
+            urlParams.forEach((value, key) => {
+                const fieldId = fieldMapping[key.toLowerCase()];
+               
+                if (fieldId) {
+                    const field = document.querySelector(`[name="${fieldId}"]`);
+                   
+                    if (field) {
+                        if (field.type === 'radio') {
+                            const radioBtn = document.querySelector(`input[name="${fieldId}"][value="${value.toLowerCase()}"]`);
+                            if (radioBtn) {
+                                radioBtn.checked = true;
+                                prefilledCount++;
+                            }
+                        } else if (field.type === 'checkbox') {
+                            field.checked = value.toLowerCase() === 'true' || value === '1';
+                            prefilledCount++;
+                        } else {
+                            field.value = value;
+                            prefilledCount++;
+                           
+                            // Trigger pincode lookup if pincode is provided
+                            if (fieldId === 'pincode' && value.length === 6) {
+                                fetchPincodeDetails(value);
+                            }
+                        }
+                       
+                        // Add visual indicator for pre-filled fields
+                        if (field.type !== 'date' && !field.hasAttribute('readonly')) {
+                            field.style.backgroundColor = '#e8f5e9';
+                            field.style.borderColor = '#4caf50';
+                        }
+                    }
+                }
+            });
+           
+            if (prefilledCount > 0) {
+                console.log(`✓ ${prefilledCount} fields pre-filled from URL parameters`);
+               
+                // Show notification
+                const notification = document.createElement('div');
+                notification.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #4caf50; color: white; padding: 15px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; font-size: 14px;';
+                notification.textContent = `✓ ${prefilledCount} फ़ील्ड URL से भरी गई`;
+                document.body.appendChild(notification);
+               
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+        }
+        // Pincode Auto-fill Functionality
+        const pincodeInput = document.getElementById('pincode');
+        const cityInput = document.getElementById('city');
+        const stateInput = document.getElementById('state');
+        const loadingMsg = document.getElementById('pincodeLoading');
+        const errorMsg = document.getElementById('pincodeError');
+        const successMsg = document.getElementById('pincodeSuccess');
+        let debounceTimer;
+        pincodeInput.addEventListener('input', function() {
+            const pincode = this.value.trim();
+           
+            loadingMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            cityInput.value = '';
+            stateInput.value = '';
+           
+            clearTimeout(debounceTimer);
+           
+            if (pincode.length === 6 && /^\d{6}$/.test(pincode)) {
+                loadingMsg.style.display = 'block';
+                debounceTimer = setTimeout(() => {
+                    fetchPincodeDetails(pincode);
+                }, 500);
+            }
+        });
+        async function fetchPincodeDetails(pincode) {
+            try {
+                const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
+               
+                if (!response.ok) {
+                    throw new Error('API request failed');
+                }
+               
+                const data = await response.json();
+                loadingMsg.style.display = 'none';
+               
+                if (data && data[0] && data[0].Status === 'Success' && data[0].PostOffice && data[0].PostOffice.length > 0) {
+                    const postOffice = data[0].PostOffice[0];
+                   
+                    cityInput.value = postOffice.District || postOffice.Block || '';
+                    stateInput.value = postOffice.State || '';
+                    successMsg.style.display = 'block';
+                   
+                    setTimeout(() => {
+                        successMsg.style.display = 'none';
+                    }, 3000);
+                } else {
+                    errorMsg.textContent = 'पिनकोड नहीं मिला। कृपया शहर और राज्य मैन्युअल रूप से दर्ज करें';
+                    errorMsg.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error fetching pincode details:', error);
+                loadingMsg.style.display = 'none';
+               
+                errorMsg.textContent = 'कृपया शहर और राज्य मैन्युअल रूप से दर्ज करें';
+                errorMsg.style.display = 'block';
+               
+                setTimeout(() => {
+                    errorMsg.style.display = 'none';
+                }, 5000);
+            }
+        }
+        async function handleSubmit(event) {
+            event.preventDefault();
+           
+            // Validation for required fields
+            const requiredFields = ['full_name', 'shop_name', 'applicant_name'];
+            let isValid = true;
+            const submitBtn = document.getElementById('submitBtn');
+            const statusDiv = document.getElementById('submitStatus');
+           
+            // Reset status
+            statusDiv.style.display = 'none';
+            statusDiv.className = 'submit-status';
+           
+            for (let fieldName of requiredFields) {
+                const field = document.querySelector(`[name="${fieldName}"]`);
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#d93025';
+                    alert(`${field.previousElementSibling.textContent.trim() || fieldName} अनिवार्य है!`);
+                    return;
+                }
+            }
+           
+            if (!document.querySelector('input[name="business_type"]:checked')) {
+                alert('व्यवसाय का प्रकार चुनें!');
+                return;
+            }
+           
+            if (!document.querySelector('input[name="account_type"]:checked')) {
+                alert('खाते का प्रकार चुनें!');
+                return;
+            }
+           
+            // Collect form data
+            const formData = new FormData();
+           
+            // Add all text, email, tel, number, date, textarea fields
+            document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"], textarea').forEach(field => {
+                formData.append(field.name, field.value || '');
+            });
+           
+            // Add radio button values
+            ['business_type', 'account_type'].forEach(name => {
+                const checked = document.querySelector(`input[name="${name}"]:checked`);
+                formData.append(name, checked ? checked.value : '');
+            });
+           
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'जमा हो रहा है...';
+           
+            statusDiv.innerHTML = '<div class="loading">📤 डेटा Google Sheet पर अपलोड हो रहा है...</div>';
+            statusDiv.style.display = 'block';
+           
+            try {
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+               
+                const result = await response.text();
+               
+                if (response.ok && result.includes('Success')) {
+                    statusDiv.innerHTML = '<div class="success">✓ फॉर्म सफलतापूर्वक जमा हो गया! Google Sheet पर डेटा जोड़ा गया। धन्यवाद!</div>';
+                    // Optional: Reset form or redirect
+                    // document.querySelectorAll('input, textarea').forEach(field => field.value = '');
+                } else {
+                    throw new Error(result || 'अज्ञात त्रुटि');
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                statusDiv.innerHTML = `<div class="error">❌ जमा करने में त्रुटि: ${error.message}. कृपया पुनः प्रयास करें।</div>`;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'फॉर्म जमा करें';
+            }
+        }
+        // File name display function (if files are added later)
+        function showFileName(input, elementId) {
+            const fileNameSpan = document.getElementById(elementId);
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const fileSize = (file.size / 1024).toFixed(2); // Size in KB
+                fileNameSpan.textContent = `✓ ${file.name} (${fileSize} KB)`;
+                fileNameSpan.classList.add('show');
+            } else {
+                fileNameSpan.textContent = '';
+                fileNameSpan.classList.remove('show');
+            }
+        }
+    </script>
+</body>
+</html>
