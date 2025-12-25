@@ -466,7 +466,7 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'जमा हो रहा है...';
            
-            statusDiv.innerHTML = '<div class="loading">📤 डेटा Google Sheet पर अपलोड हो रहा है...</div>';
+            statusDiv.innerHTML = '<div class="loading">📤 डेटा अपलोड हो रहा है...</div>';
             statusDiv.style.display = 'block';
            
             try {
@@ -478,7 +478,7 @@
                 const result = await response.text();
                
                 if (response.ok && result.includes('Success')) {
-                    statusDiv.innerHTML = '<div class="success">✓ फॉर्म सफलतापूर्वक जमा हो गया! Google Sheet पर डेटा जोड़ा गया। धन्यवाद!</div>';
+                    statusDiv.innerHTML = '<div class="success">✓ फॉर्म सफलतापूर्वक जमा हो गया! धन्यवाद!</div>';
                     // Optional: Reset form or redirect
                     // document.querySelectorAll('input, textarea').forEach(field => field.value = '');
                 } else {
@@ -507,4 +507,5 @@
         }
     </script>
 </body>
+
 </html>
