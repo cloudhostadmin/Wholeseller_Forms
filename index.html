@@ -13,7 +13,7 @@
         .header h1 { color: #d35400; font-size: 28px; margin-bottom: 8px; }
         .header h2 { color: #555; font-size: 18px; font-weight: normal; margin-bottom: 5px; }
         .header p { color: #666; font-size: 13px; margin-top: 5px; }
-        .date-tally { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 25px; }
+        .tally-code-section { margin-bottom: 25px; }
         .section { margin-bottom: 25px; page-break-inside: avoid; }
         .section-title { background: #ff6b35; color: white; padding: 10px 18px; margin-bottom: 15px; border-radius: 5px; font-size: 16px; font-weight: bold; }
         .form-group { margin-bottom: 15px; }
@@ -31,7 +31,7 @@
         .declaration ol { margin-left: 20px; font-size: 12px; line-height: 1.4; }
         .declaration li { margin-bottom: 6px; color: #333; }
         .signature-section { margin-top: 20px; padding-top: 15px; border-top: 2px solid #ddd; page-break-inside: avoid; }
-        .signature-row { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px; }
+        .signature-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
         .submit-btn { background: #ff6b35; color: white; padding: 14px 35px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 20px; transition: background 0.3s; }
         .submit-btn:hover { background: #d35400; }
         .submit-btn:disabled { background: #ccc; cursor: not-allowed; }
@@ -65,7 +65,7 @@
         .pdf-mode .form-group { margin-bottom: 7px !important; }
         .pdf-mode label { font-size: 7.5pt !important; margin-bottom: 2px !important; font-weight: 600; }
         .pdf-mode .row { gap: 8px !important; }
-        .pdf-mode .date-tally { gap: 8px !important; margin-bottom: 10px !important; }
+        .pdf-mode .tally-code-section { margin-bottom: 10px !important; }
         .pdf-mode .declaration { padding: 8px !important; margin-bottom: 10px !important; }
         .pdf-mode .declaration h3 { font-size: 8.5pt !important; margin-bottom: 5px !important; }
         .pdf-mode .declaration p { font-size: 7pt !important; margin-bottom: 5px !important; }
@@ -99,7 +99,7 @@
         }
         @media (max-width: 768px) {
             .container { padding: 20px; }
-            .row, .date-tally { grid-template-columns: 1fr; }
+            .row, .signature-row { grid-template-columns: 1fr; }
             .header h1 { font-size: 22px; }
             .header h2 { font-size: 16px; }
             .section-title { font-size: 15px; }
@@ -129,16 +129,14 @@
             <h2>दुकानदार/खुदरा विक्रेता पंजीकरण फॉर्म</h2>
             <p>गीता प्रेस प्रकाशनों की बिक्री हेतु</p>
         </div>
-        <div class="date-tally">
-            <div class="form-group">
-                <label>आवेदन दिनांक:</label>
-                <input type="date" name="application_date" id="application_date" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
-            </div>
+        
+        <div class="tally-code-section">
             <div class="form-group">
                 <label>टैली कोड: <span class="note">(केवल कार्यालय उपयोग हेतु)</span></label>
                 <input type="text" name="tally_code" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
             </div>
         </div>
+        
         <div class="section">
             <div class="section-title">व्यवसाय की जानकारी</div>
             <div class="form-group">
@@ -216,6 +214,7 @@
                 <input type="text" name="shop_license" placeholder="लाइसेंस संख्या">
             </div>
         </div>
+        
         <div class="declaration">
             <h3>घोषणा एवं शर्तें</h3>
             <p><strong>मैं एतद्द्वारा घोषणा करता/करती हूँ कि:</strong></p>
@@ -226,6 +225,19 @@
                 <li>मैं गीता प्रेस द्वारा सुझाई गई प्रचार गतिविधियों में भाग लूँगा</li>
                 <li>मैं समय-समय पर गीता प्रेस द्वारा निर्धारित सभी नियमों / डिस्काउंट एवं बोनस शर्तों का पालन करने के लिए सहमत हूँ</li>
             </ol>
+        </div>
+        
+        <div class="signature-section">
+            <div class="signature-row">
+                <div class="form-group">
+                    <label>आवेदन दिनांक:</label>
+                    <input type="date" name="application_date" id="application_date" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
+                </div>
+                <div class="form-group">
+                    <label>आवेदक हस्ताक्षर (पूरा नाम लिखे):</label>
+                    <input type="text" name="applicant_signature" placeholder="आपका पूरा नाम">
+                </div>
+            </div>
         </div>
         
         <div class="submit-status" id="submitStatus"></div>
@@ -377,7 +389,7 @@
                 return;
             }
             panInput.style.borderColor = '#ddd';
-            panInput.value = pan; // Set uppercase value
+            panInput.value = pan;
 
             // Check required fields
             const requiredFields = document.querySelectorAll('input[required], textarea[required]');
@@ -438,11 +450,8 @@
             loader.classList.add('show');
             
             const element = document.getElementById('formContainer');
-            
-            // Add PDF mode class
             element.classList.add('pdf-mode');
             
-            // Hide buttons and status messages temporarily
             const hiddenElements = [];
             document.querySelectorAll('.submit-btn, .post-submit-actions, .submit-status, .status-msg').forEach(el => {
                 if (el.style.display !== 'none') {
@@ -480,7 +489,6 @@
             };
             
             html2pdf().set(opt).from(element).save().then(() => {
-                // Restore visibility
                 hiddenElements.forEach(el => {
                     el.style.display = '';
                 });
@@ -495,7 +503,6 @@
                 console.error('PDF generation error:', err);
                 alert('PDF बनाने में त्रुटि हुई। कृपया पुनः प्रयास करें।');
                 
-                // Restore visibility even on error
                 hiddenElements.forEach(el => {
                     el.style.display = '';
                 });
@@ -519,3 +526,4 @@
     </script>
 </body>
 </html>
+
