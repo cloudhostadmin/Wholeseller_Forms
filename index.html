@@ -4,63 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>गीता प्रेस विक्रेता पंजीकरण फॉर्म</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 20px; line-height: 1.6; }
-        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #ff6b35; }
-        .header h1 { color: #d35400; font-size: 28px; margin-bottom: 10px; }
-        .header h2 { color: #555; font-size: 18px; font-weight: normal; }
-        .date-tally { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
-        .section { margin-bottom: 30px; }
-        .section-title { background: #ff6b35; color: white; padding: 12px 20px; margin-bottom: 20px; border-radius: 5px; font-size: 18px; font-weight: bold; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; color: #333; font-weight: 600; }
-        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"], textarea { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px; transition: border-color 0.3s; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 20px; line-height: 1.5; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; }
+        .header { text-align: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 3px solid #ff6b35; }
+        .header h1 { color: #d35400; font-size: 28px; margin-bottom: 8px; }
+        .header h2 { color: #555; font-size: 18px; font-weight: normal; margin-bottom: 5px; }
+        .header p { color: #666; font-size: 13px; margin-top: 5px; }
+        .date-tally { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 25px; }
+        .section { margin-bottom: 25px; page-break-inside: avoid; }
+        .section-title { background: #ff6b35; color: white; padding: 10px 18px; margin-bottom: 15px; border-radius: 5px; font-size: 16px; font-weight: bold; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; color: #333; font-weight: 600; font-size: 13px; }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"], textarea { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 5px; font-size: 13px; transition: border-color 0.3s; box-sizing: border-box; font-family: inherit; }
         input:focus, textarea:focus { outline: none; border-color: #ff6b35; }
-        textarea { min-height: 80px; resize: vertical; }
-        .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .checkbox-group { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 8px; }
-        .checkbox-group label { display: flex; align-items: center; font-weight: normal; }
-        .checkbox-group input[type="checkbox"], .checkbox-group input[type="radio"] { width: auto; margin-right: 8px; }
-        .document-checklist { background: #f8f9fa; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
-        .document-checklist h3 { color: #333; margin-bottom: 15px; font-size: 16px; }
-        .document-item { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; padding: 15px; background: white; border-radius: 5px; border: 1px solid #e0e0e0; }
-        .document-item > div:first-child { display: flex; align-items: center; }
-        .document-item input[type="checkbox"] { width: auto; margin-right: 10px; }
-        .document-item label { font-weight: normal; margin-bottom: 0; flex: 1; }
-        .file-input { padding: 8px; border: 2px dashed #ddd; border-radius: 5px; font-size: 14px; cursor: pointer; transition: border-color 0.3s; background: #fafafa; }
-        .file-input:hover { border-color: #ff6b35; }
-        .file-input::-webkit-file-upload-button { background: #ff6b35; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; margin-right: 10px; }
-        .file-input::-webkit-file-upload-button:hover { background: #d35400; }
-        .file-name { font-size: 12px; color: #1e8e3e; font-weight: 600; display: none; }
-        .file-name.show { display: block; }
-        .declaration { background: #fff3cd; padding: 20px; border-radius: 5px; border-left: 4px solid #ffc107; }
-        .declaration h3 { color: #856404; margin-bottom: 15px; }
-        .declaration ol { margin-left: 20px; }
-        .declaration li { margin-bottom: 10px; color: #333; }
-        .signature-section { margin-top: 30px; padding-top: 20px; border-top: 2px solid #ddd; }
-        .signature-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
-        .submit-btn { background: #ff6b35; color: white; padding: 15px 40px; border: none; border-radius: 5px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 20px; transition: background 0.3s; }
+        textarea { min-height: 65px; resize: vertical; }
+        .row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .checkbox-group { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 8px; }
+        .checkbox-group label { display: flex; align-items: center; font-weight: normal; margin-bottom: 0; }
+        .checkbox-group input[type="checkbox"], .checkbox-group input[type="radio"] { width: auto; margin-right: 6px; }
+        .declaration { background: #fff3cd; padding: 15px; border-radius: 5px; border-left: 4px solid #ffc107; page-break-inside: avoid; margin-bottom: 20px; }
+        .declaration h3 { color: #856404; margin-bottom: 10px; font-size: 14px; }
+        .declaration p { margin-bottom: 10px; font-size: 12px; }
+        .declaration ol { margin-left: 20px; font-size: 12px; line-height: 1.4; }
+        .declaration li { margin-bottom: 6px; color: #333; }
+        .signature-section { margin-top: 20px; padding-top: 15px; border-top: 2px solid #ddd; page-break-inside: avoid; }
+        .signature-row { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px; }
+        .submit-btn { background: #ff6b35; color: white; padding: 14px 35px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 20px; transition: background 0.3s; }
         .submit-btn:hover { background: #d35400; }
         .submit-btn:disabled { background: #ccc; cursor: not-allowed; }
-        .note { color: #666; font-size: 12px; font-style: italic; }
+        .note { color: #666; font-size: 11px; font-style: italic; }
         .status-msg { display: none; font-size: 12px; margin-top: 4px; }
         .loading { color: #673ab7; }
         .error { color: #d93025; }
         .success { color: #1e8e3e; }
         .submit-status { margin-top: 10px; padding: 10px; border-radius: 5px; display: none; }
-        @media print { body { background: white; padding: 0; } .container { box-shadow: none; padding: 20px; } .submit-btn { display: none; } }
-        @media (max-width: 768px) { .container { padding: 20px; } .row, .date-tally { grid-template-columns: 1fr; } }
+        .post-submit-actions { display: none; margin-top: 20px; padding: 20px; background: #e8f5e9; border-radius: 5px; text-align: center; }
+        .post-submit-actions h3 { font-size: 16px; margin-bottom: 8px; }
+        .post-submit-actions p { font-size: 13px; margin-bottom: 12px; }
+        .post-submit-actions button { margin: 8px; padding: 10px 20px; background: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 13px; }
+        .post-submit-actions button:hover { background: #45a049; }
+        .whatsapp-btn { background: #25d366 !important; }
+        .whatsapp-btn:hover { background: #128c7e !important; }
+        .pdf-generating { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 10000; text-align: center; display: none; }
+        .pdf-generating.show { display: block; }
+        .pdf-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; display: none; }
+        .pdf-overlay.show { display: block; }
+
+        /* OPTIMIZED PDF MODE - FITS IN 1-2 PAGES */
+        .pdf-mode { padding: 8mm !important; max-width: 100% !important; box-shadow: none !important; }
+        .pdf-mode .submit-btn, .pdf-mode .post-submit-actions, .pdf-mode .status-msg { display: none !important; }
+        .pdf-mode input, .pdf-mode textarea { border: 0.5px solid #333 !important; background: white !important; font-size: 8pt !important; padding: 4px !important; }
+        .pdf-mode .section { margin-bottom: 10px !important; page-break-inside: avoid !important; }
+        .pdf-mode .section-title { font-size: 9.5pt !important; padding: 6px 12px !important; margin-bottom: 8px !important; }
+        .pdf-mode .header { margin-bottom: 10px !important; padding-bottom: 8px !important; }
+        .pdf-mode .header h1 { font-size: 14pt !important; margin-bottom: 3px !important; }
+        .pdf-mode .header h2 { font-size: 10pt !important; margin-bottom: 2px !important; }
+        .pdf-mode .header p { font-size: 8pt !important; margin-top: 2px !important; }
+        .pdf-mode .form-group { margin-bottom: 7px !important; }
+        .pdf-mode label { font-size: 7.5pt !important; margin-bottom: 2px !important; font-weight: 600; }
+        .pdf-mode .row { gap: 8px !important; }
+        .pdf-mode .date-tally { gap: 8px !important; margin-bottom: 10px !important; }
+        .pdf-mode .declaration { padding: 8px !important; margin-bottom: 10px !important; }
+        .pdf-mode .declaration h3 { font-size: 8.5pt !important; margin-bottom: 5px !important; }
+        .pdf-mode .declaration p { font-size: 7pt !important; margin-bottom: 5px !important; }
+        .pdf-mode .declaration ol { margin-left: 14px !important; font-size: 7pt !important; line-height: 1.2; }
+        .pdf-mode .declaration li { margin-bottom: 2px !important; }
+        .pdf-mode .signature-section { margin-top: 10px !important; padding-top: 8px !important; }
+        .pdf-mode .signature-row { gap: 8px !important; margin-top: 8px !important; }
+        .pdf-mode .note { font-size: 6.5pt !important; }
+        .pdf-mode textarea { min-height: 40px !important; }
+        .pdf-mode .checkbox-group { gap: 8px !important; margin-top: 4px !important; }
+        .pdf-mode .checkbox-group label { font-size: 7pt !important; }
+
+        @media print {
+            body { background: white; padding: 0; font-size: 10pt; margin: 0; }
+            .container { box-shadow: none; padding: 8mm; max-width: none; width: 100%; margin: 0; }
+            .submit-btn, .post-submit-actions, .status-msg { display: none; }
+            .row { grid-template-columns: 1fr 1fr; }
+            input, textarea { border: 0.5px solid #000 !important; background: white; font-size: 8pt; padding: 4px; }
+            .section { page-break-inside: avoid; margin-bottom: 10px; }
+            .form-group { margin-bottom: 7px; }
+            label { font-size: 7.5pt; margin-bottom: 2px; }
+            .declaration { padding: 8px; }
+            .declaration h3 { font-size: 8.5pt; margin-bottom: 5px; }
+            .declaration p { font-size: 7pt; margin-bottom: 5px; }
+            .declaration ol { margin-left: 14px; font-size: 7pt; line-height: 1.2; }
+            .declaration li { margin-bottom: 2px; }
+            .header h1 { font-size: 14pt; margin-bottom: 3px; }
+            .header h2 { font-size: 10pt; margin-bottom: 2px; }
+            .header p { font-size: 8pt; margin-top: 2px; }
+            textarea { min-height: 40px; }
+            @page { size: A4; margin: 8mm; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            .row, .date-tally { grid-template-columns: 1fr; }
+            .header h1 { font-size: 22px; }
+            .header h2 { font-size: 16px; }
+            .section-title { font-size: 15px; }
+            .checkbox-group { gap: 10px; }
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="pdf-overlay" id="pdfOverlay"></div>
+    <div class="pdf-generating" id="pdfGenerating">
+        <h3>📄 PDF बनाई जा रही है...</h3>
+        <p>कृपया प्रतीक्षा करें</p>
+        <div style="margin-top: 20px;">
+            <div style="width: 200px; height: 4px; background: #ddd; border-radius: 2px; overflow: hidden;">
+                <div style="width: 0%; height: 100%; background: #4caf50; animation: progress 2s ease-in-out infinite;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="formContainer">
         <div class="header">
             <h1>गीता प्रेस गोरखपुर</h1>
             <h2>दुकानदार/खुदरा विक्रेता पंजीकरण फॉर्म</h2>
-            <p style="color: #666; margin-top: 10px;">गीता प्रेस प्रकाशनों की बिक्री हेतु</p>
+            <p>गीता प्रेस प्रकाशनों की बिक्री हेतु</p>
         </div>
+
         <div class="date-tally">
             <div class="form-group">
                 <label>आवेदन दिनांक:</label>
@@ -71,49 +145,15 @@
                 <input type="text" name="tally_code" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
             </div>
         </div>
-        <div class="section">
-            <div class="section-title">स्वामी/साझेदार/निदेशक की व्यक्तिगत जानकारी</div>
-           
-            <div class="form-group">
-                <label>पूरा नाम:</label>
-                <input type="text" name="full_name" required>
-            </div>
-            <div class="form-group">
-                <label>पिता/पति का नाम:</label>
-                <input type="text" name="father_husband_name">
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label>आधार संख्या:</label>
-                    <input type="text" name="aadhaar" placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
-                </div>
-                <div class="form-group">
-                    <label>पैन संख्या:</label>
-                    <input type="text" name="pan_personal" placeholder="XXXXXXXXXX" maxlength="10">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label>मोबाइल नंबर:</label>
-                    <input type="tel" name="mobile" placeholder="+91 XXXXXXXXXX">
-                </div>
-                <div class="form-group">
-                    <label>व्हाट्सएप नंबर:</label>
-                    <input type="tel" name="whatsapp" placeholder="+91 XXXXXXXXXX">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>ईमेल पता:</label>
-                <input type="email" name="email">
-            </div>
-        </div>
+
         <div class="section">
             <div class="section-title">व्यवसाय की जानकारी</div>
-           
+
             <div class="form-group">
                 <label>दुकान/व्यवसाय का नाम:</label>
                 <input type="text" name="shop_name" required>
             </div>
+
             <div class="form-group">
                 <label>व्यवसाय का प्रकार:</label>
                 <div class="checkbox-group">
@@ -123,10 +163,12 @@
                     <label><input type="radio" name="business_type" value="llp"> LLP</label>
                 </div>
             </div>
+
             <div class="form-group">
                 <label>दुकान का पूर्ण पता:</label>
-                <textarea name="shop_address" rows="3"></textarea>
+                <textarea name="shop_address" rows="2"></textarea>
             </div>
+
             <div class="form-group">
                 <label>पिनकोड:</label>
                 <input type="text" name="pincode" id="pincode" maxlength="6" pattern="[0-9]{6}" placeholder="6 अंकों का पिनकोड दर्ज करें">
@@ -134,6 +176,7 @@
                 <div class="status-msg error" id="pincodeError">अमान्य पिनकोड या विवरण प्राप्त करने में असमर्थ</div>
                 <div class="status-msg success" id="pincodeSuccess">✓ स्थान विवरण लोड किया गया</div>
             </div>
+
             <div class="row">
                 <div class="form-group">
                     <label>शहर:</label>
@@ -144,6 +187,7 @@
                     <input type="text" name="state" id="state" placeholder="राज्य दर्ज करें">
                 </div>
             </div>
+
             <div class="row">
                 <div class="form-group">
                     <label>पैन संख्या:</label>
@@ -154,161 +198,108 @@
                     <input type="text" name="gstin" maxlength="15">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label>गीताप्रेस की पुस्तक कब से बेच रहे है:</label>
+                <input type="text" name="establishment_year" placeholder="उदा. 2010 या दस वर्ष" maxlength="50">
+            </div>
+
+            <div class="form-group">
+                <label>स्वामी/साझेदार/निदेशक का नाम:</label>
+                <input type="text" name="full_name" required>
+            </div>
+
             <div class="row">
                 <div class="form-group">
-                    <label>स्थापना वर्ष:</label>
-                    <input type="number" name="establishment_year" min="1900" max="2025">
+                    <label>मोबाइल नंबर:</label>
+                    <input type="tel" name="mobile" placeholder="+91 XXXXXXXXXX">
                 </div>
                 <div class="form-group">
-                    <label>कुल दुकान क्षेत्रफल (वर्ग फुट):</label>
-                    <input type="number" name="shop_area">
+                    <label>व्हाट्सएप नंबर:</label>
+                    <input type="tel" name="whatsapp" placeholder="+91 XXXXXXXXXX">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label>ईमेल पता:</label>
+                <input type="email" name="email" placeholder="example@email.com">
+            </div>
+
+            <div class="form-group">
+                <label>कुल दुकान क्षेत्रफल (वर्ग फुट):</label>
+                <input type="number" name="shop_area" placeholder="उदा. 500">
+            </div>
+
             <div class="form-group">
                 <label>दुकान पंजीकरण/लाइसेंस संख्या:</label>
-                <input type="text" name="shop_license">
+                <input type="text" name="shop_license" placeholder="लाइसेंस संख्या">
             </div>
         </div>
-        <div class="section">
-            <div class="section-title">बैंकिंग एवं भुगतान विवरण</div>
-           
-            <div class="row">
-                <div class="form-group">
-                    <label>बैंक का नाम:</label>
-                    <input type="text" name="bank_name">
-                </div>
-                <div class="form-group">
-                    <label>शाखा का नाम:</label>
-                    <input type="text" name="branch_name">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>खाताधारक का नाम:</label>
-                <input type="text" name="account_holder">
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label>खाता संख्या:</label>
-                    <input type="text" name="account_number">
-                </div>
-                <div class="form-group">
-                    <label>IFSC कोड:</label>
-                    <input type="text" name="ifsc" maxlength="11">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>खाते का प्रकार:</label>
-                <div class="checkbox-group">
-                    <label><input type="radio" name="account_type" value="savings"> बचत</label>
-                    <label><input type="radio" name="account_type" value="current"> चालू</label>
-                </div>
-            </div>
-        </div>
-       
+
         <div class="declaration">
             <h3>घोषणा एवं शर्तें</h3>
-            <p style="margin-bottom: 15px;"><strong>मैं एतद्द्वारा घोषणा करता/करती हूँ कि:</strong></p>
+            <p><strong>मैं एतद्द्वारा घोषणा करता/करती हूँ कि:</strong></p>
             <ol>
                 <li>ऊपर दी गई सभी जानकारी मेरी जानकारी के अनुसार सत्य एवं सही है</li>
-                <li>मैं गीता प्रेस के प्रकाशनों को अधिकतम खुदरा मूल्य (MRP) से अधिक पर नहीं बेचूँगा/बेचूँगी</li>
-                <li>मैं अपनी दुकान में गीता प्रेस की पुस्तकों का उचित स्टॉक एवं प्रदर्शन बनाए रखूँगा/रखूँगी</li>
-                <li>मैं गीता प्रेस के प्रकाशनों की नकली या अनधिकृत प्रतियाँ नहीं बेचूँगा/बेचूँगी</li>
-                <li>मैं समझता/समझती हूँ कि विक्रेता लाभ एवं छूट गीता प्रेस की नीति के अनुसार होगी</li>
-                <li>मैं सहमत शर्तों के अनुसार समय पर भुगतान करूँगा/करूँगी</li>
-                <li>मैं गीता प्रेस द्वारा सुझाई गई प्रचार गतिविधियों में भाग लूँगा/लूँगी</li>
-                <li>मैं गीता प्रेस को दी गई जानकारी सत्यापित करने का अधिकार देता/देती हूँ</li>
-                <li>मैं समय-समय पर गीता प्रेस द्वारा निर्धारित सभी नियमों एवं शर्तों का पालन करने के लिए सहमत हूँ</li>
+                <li>मैं गीता प्रेस के प्रकाशनों को अधिकतम खुदरा मूल्य (MRP) से अधिक पर नहीं बेचूँगा</li>
+                <li>मैं अपनी दुकान में गीता प्रेस की पुस्तकों का उचित स्टॉक एवं प्रदर्शन बनाए रखूँगा</li>
+                <li>मैं गीता प्रेस द्वारा सुझाई गई प्रचार गतिविधियों में भाग लूँगा</li>
+                <li>मैं समय-समय पर गीता प्रेस द्वारा निर्धारित सभी नियमों / डिस्काउंट एवं बोनस शर्तों का पालन करने के लिए सहमत हूँ</li>
             </ol>
         </div>
+
         <div class="signature-section">
-            <div class="signature-row">
-                <div class="form-group">
-                    <label>आवेदक का नाम:</label>
-                    <input type="text" name="applicant_name" required>
-                </div>
-            </div>
             <div class="signature-row">
                 <div class="form-group">
                     <label>दिनांक:</label>
                     <input type="date" name="declaration_date" id="declaration_date" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
                 </div>
-                <div class="form-group">
-                    <label>स्थान:</label>
-                    <input type="text" name="place">
-                </div>
             </div>
         </div>
+
         <div class="submit-status" id="submitStatus"></div>
+
+        <div class="post-submit-actions" id="postSubmitActions">
+            <h3>✓ फॉर्म सफलतापूर्वक जमा हो गया!</h3>
+            <p>नीचे दिए गए विकल्पों का उपयोग करें:</p>
+            <button onclick="downloadPDF()">📄 फॉर्म को PDF के रूप में डाउनलोड करें</button>
+            <button class="whatsapp-btn" onclick="shareOnWhatsApp()">📱 व्हाट्सएप पर भेजें</button>
+        </div>
+
         <button type="submit" class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">फॉर्म जमा करें</button>
     </div>
-    <script>
-        // Replace with your actual Google Apps Script Web App URL
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZCn12QwqRBNqIojzopfBMNVLV2vq8zaIA01V4ONYxWpIQMk9YuyyQlEW3HCpK1H8J/exec'; // Replace YOUR_SCRIPT_ID with your actual script ID
 
-        // Set current date on page load
+    <script>
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZCn12QwqRBNqIojzopfBMNVLV2vq8zaIA01V4ONYxWpIQMk9YuyyQlEW3HCpK1H8J/exec';
+
         window.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('application_date').value = today;
             document.getElementById('declaration_date').value = today;
-           
-            // Auto-fill from URL parameters
             autoFillFromURL();
         });
-        // Field mapping for URL parameters
+
         const fieldMapping = {
-            'full_name': 'full_name',
-            'name': 'full_name',
-            'father_name': 'father_husband_name',
-            'father_husband_name': 'father_husband_name',
-            'aadhaar': 'aadhaar',
-            'aadhar': 'aadhaar',
-            'pan_personal': 'pan_personal',
-            'pan': 'pan_personal',
-            'mobile': 'mobile',
-            'whatsapp': 'whatsapp',
-            'email': 'email',
-            'shop_name': 'shop_name',
-            'business_name': 'shop_name',
-            'business_type': 'business_type',
-            'shop_address': 'shop_address',
-            'address': 'shop_address',
-            'pincode': 'pincode',
-            'pin': 'pincode',
-            'city': 'city',
-            'state': 'state',
-            'pan_business': 'pan_business',
-            'gstin': 'gstin',
-            'gst': 'gstin',
-            'establishment_year': 'establishment_year',
-            'year': 'establishment_year',
-            'shop_area': 'shop_area',
-            'area': 'shop_area',
-            'shop_license': 'shop_license',
-            'license': 'shop_license',
-            'bank_name': 'bank_name',
-            'bank': 'bank_name',
-            'branch_name': 'branch_name',
-            'branch': 'branch_name',
-            'account_holder': 'account_holder',
-            'holder': 'account_holder',
-            'account_number': 'account_number',
-            'account': 'account_number',
-            'ifsc': 'ifsc',
-            'account_type': 'account_type',
-            'applicant_name': 'applicant_name',
-            'place': 'place',
-            'tally_code': 'tally_code'
+            'full_name': 'full_name', 'name': 'full_name', 'mobile': 'mobile', 'whatsapp': 'whatsapp', 
+            'email': 'email', 'shop_name': 'shop_name', 'business_name': 'shop_name', 
+            'business_type': 'business_type', 'shop_address': 'shop_address', 'address': 'shop_address', 
+            'pincode': 'pincode', 'pin': 'pincode', 'city': 'city', 'state': 'state', 
+            'pan_business': 'pan_business', 'gstin': 'gstin', 'gst': 'gstin', 
+            'establishment_year': 'establishment_year', 'year': 'establishment_year', 
+            'shop_area': 'shop_area', 'area': 'shop_area', 'shop_license': 'shop_license', 
+            'license': 'shop_license', 'tally_code': 'tally_code'
         };
+
         function autoFillFromURL() {
             const urlParams = new URLSearchParams(window.location.search);
             let prefilledCount = 0;
-           
+
             urlParams.forEach((value, key) => {
                 const fieldId = fieldMapping[key.toLowerCase()];
-               
+
                 if (fieldId) {
                     const field = document.querySelector(`[name="${fieldId}"]`);
-                   
+
                     if (field) {
                         if (field.type === 'radio') {
                             const radioBtn = document.querySelector(`input[name="${fieldId}"][value="${value.toLowerCase()}"]`);
@@ -322,14 +313,12 @@
                         } else {
                             field.value = value;
                             prefilledCount++;
-                           
-                            // Trigger pincode lookup if pincode is provided
+
                             if (fieldId === 'pincode' && value.length === 6) {
                                 fetchPincodeDetails(value);
                             }
                         }
-                       
-                        // Add visual indicator for pre-filled fields
+
                         if (field.type !== 'date' && !field.hasAttribute('readonly')) {
                             field.style.backgroundColor = '#e8f5e9';
                             field.style.borderColor = '#4caf50';
@@ -337,22 +326,19 @@
                     }
                 }
             });
-           
+
             if (prefilledCount > 0) {
                 console.log(`✓ ${prefilledCount} fields pre-filled from URL parameters`);
-               
-                // Show notification
+
                 const notification = document.createElement('div');
                 notification.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #4caf50; color: white; padding: 15px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; font-size: 14px;';
                 notification.textContent = `✓ ${prefilledCount} फ़ील्ड URL से भरी गई`;
                 document.body.appendChild(notification);
-               
-                setTimeout(() => {
-                    notification.remove();
-                }, 3000);
+
+                setTimeout(() => notification.remove(), 3000);
             }
         }
-        // Pincode Auto-fill Functionality
+
         const pincodeInput = document.getElementById('pincode');
         const cityInput = document.getElementById('city');
         const stateInput = document.getElementById('state');
@@ -360,45 +346,41 @@
         const errorMsg = document.getElementById('pincodeError');
         const successMsg = document.getElementById('pincodeSuccess');
         let debounceTimer;
+
         pincodeInput.addEventListener('input', function() {
             const pincode = this.value.trim();
-           
+
             loadingMsg.style.display = 'none';
             errorMsg.style.display = 'none';
             successMsg.style.display = 'none';
             cityInput.value = '';
             stateInput.value = '';
-           
+
             clearTimeout(debounceTimer);
-           
+
             if (pincode.length === 6 && /^\d{6}$/.test(pincode)) {
                 loadingMsg.style.display = 'block';
-                debounceTimer = setTimeout(() => {
-                    fetchPincodeDetails(pincode);
-                }, 500);
+                debounceTimer = setTimeout(() => fetchPincodeDetails(pincode), 500);
             }
         });
+
         async function fetchPincodeDetails(pincode) {
             try {
                 const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
-               
-                if (!response.ok) {
-                    throw new Error('API request failed');
-                }
-               
+
+                if (!response.ok) throw new Error('API request failed');
+
                 const data = await response.json();
                 loadingMsg.style.display = 'none';
-               
+
                 if (data && data[0] && data[0].Status === 'Success' && data[0].PostOffice && data[0].PostOffice.length > 0) {
                     const postOffice = data[0].PostOffice[0];
-                   
+
                     cityInput.value = postOffice.District || postOffice.Block || '';
                     stateInput.value = postOffice.State || '';
                     successMsg.style.display = 'block';
-                   
-                    setTimeout(() => {
-                        successMsg.style.display = 'none';
-                    }, 3000);
+
+                    setTimeout(() => successMsg.style.display = 'none', 3000);
                 } else {
                     errorMsg.textContent = 'पिनकोड नहीं मिला। कृपया शहर और राज्य मैन्युअल रूप से दर्ज करें';
                     errorMsg.style.display = 'block';
@@ -406,81 +388,66 @@
             } catch (error) {
                 console.error('Error fetching pincode details:', error);
                 loadingMsg.style.display = 'none';
-               
+
                 errorMsg.textContent = 'कृपया शहर और राज्य मैन्युअल रूप से दर्ज करें';
                 errorMsg.style.display = 'block';
-               
-                setTimeout(() => {
-                    errorMsg.style.display = 'none';
-                }, 5000);
+
+                setTimeout(() => errorMsg.style.display = 'none', 5000);
             }
         }
+
         async function handleSubmit(event) {
             event.preventDefault();
-           
-            // Validation for required fields
-            const requiredFields = ['full_name', 'shop_name', 'applicant_name'];
-            let isValid = true;
+
+            const requiredFields = ['full_name', 'shop_name'];
             const submitBtn = document.getElementById('submitBtn');
             const statusDiv = document.getElementById('submitStatus');
-           
-            // Reset status
+
             statusDiv.style.display = 'none';
             statusDiv.className = 'submit-status';
-           
+
             for (let fieldName of requiredFields) {
                 const field = document.querySelector(`[name="${fieldName}"]`);
                 if (!field.value.trim()) {
-                    isValid = false;
                     field.style.borderColor = '#d93025';
                     alert(`${field.previousElementSibling.textContent.trim() || fieldName} अनिवार्य है!`);
                     return;
                 }
             }
-           
+
             if (!document.querySelector('input[name="business_type"]:checked')) {
                 alert('व्यवसाय का प्रकार चुनें!');
                 return;
             }
-           
-            if (!document.querySelector('input[name="account_type"]:checked')) {
-                alert('खाते का प्रकार चुनें!');
-                return;
-            }
-           
-            // Collect form data
+
             const formData = new FormData();
-           
-            // Add all text, email, tel, number, date, textarea fields
+
             document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"], textarea').forEach(field => {
                 formData.append(field.name, field.value || '');
             });
-           
-            // Add radio button values
-            ['business_type', 'account_type'].forEach(name => {
+
+            ['business_type'].forEach(name => {
                 const checked = document.querySelector(`input[name="${name}"]:checked`);
                 formData.append(name, checked ? checked.value : '');
             });
-           
-            // Disable submit button
+
             submitBtn.disabled = true;
             submitBtn.textContent = 'जमा हो रहा है...';
-           
+
             statusDiv.innerHTML = '<div class="loading">📤 डेटा अपलोड हो रहा है...</div>';
             statusDiv.style.display = 'block';
-           
+
             try {
                 const response = await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
                     body: formData
                 });
-               
+
                 const result = await response.text();
-               
+
                 if (response.ok && result.includes('Success')) {
-                    statusDiv.innerHTML = '<div class="success">✓ फॉर्म सफलतापूर्वक जमा हो गया! धन्यवाद!</div>';
-                    // Optional: Reset form or redirect
-                    // document.querySelectorAll('input, textarea').forEach(field => field.value = '');
+                    statusDiv.innerHTML = '<div class="success">✓ फॉर्म सफलतापूर्वक जमा हो गया!</div>';
+                    document.getElementById('postSubmitActions').style.display = 'block';
                 } else {
                     throw new Error(result || 'अज्ञात त्रुटि');
                 }
@@ -492,20 +459,96 @@
                 submitBtn.textContent = 'फॉर्म जमा करें';
             }
         }
-        // File name display function (if files are added later)
-        function showFileName(input, elementId) {
-            const fileNameSpan = document.getElementById(elementId);
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
-                const fileSize = (file.size / 1024).toFixed(2); // Size in KB
-                fileNameSpan.textContent = `✓ ${file.name} (${fileSize} KB)`;
-                fileNameSpan.classList.add('show');
-            } else {
-                fileNameSpan.textContent = '';
-                fileNameSpan.classList.remove('show');
-            }
+
+        function downloadPDF() {
+            const overlay = document.getElementById('pdfOverlay');
+            const loader = document.getElementById('pdfGenerating');
+            
+            overlay.classList.add('show');
+            loader.classList.add('show');
+            
+            const element = document.getElementById('formContainer');
+            
+            // Add PDF mode class
+            element.classList.add('pdf-mode');
+            
+            // Hide buttons and status messages temporarily
+            const hiddenElements = [];
+            document.querySelectorAll('.submit-btn, .post-submit-actions, .submit-status, .status-msg').forEach(el => {
+                if (el.style.display !== 'none') {
+                    hiddenElements.push(el);
+                    el.style.display = 'none';
+                }
+            });
+            
+            const opt = {
+                margin: [8, 8, 8, 8],
+                filename: 'Gita_Press_Vikreta_Panjikaran_Form.pdf',
+                image: { type: 'jpeg', quality: 0.95 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    logging: false,
+                    letterRendering: true,
+                    allowTaint: true,
+                    scrollY: 0,
+                    scrollX: 0,
+                    backgroundColor: '#ffffff',
+                    removeContainer: false,
+                    imageTimeout: 0
+                },
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: 'a4', 
+                    orientation: 'portrait',
+                    compress: true
+                },
+                pagebreak: { 
+                    mode: ['avoid-all', 'css', 'legacy'],
+                    avoid: ['.header', '.declaration', '.signature-section']
+                }
+            };
+            
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Restore visibility
+                hiddenElements.forEach(el => {
+                    el.style.display = '';
+                });
+                
+                element.classList.remove('pdf-mode');
+                
+                setTimeout(() => {
+                    overlay.classList.remove('show');
+                    loader.classList.remove('show');
+                }, 500);
+            }).catch(err => {
+                console.error('PDF generation error:', err);
+                alert('PDF बनाने में त्रुटि हुई। कृपया पुनः प्रयास करें।');
+                
+                // Restore visibility even on error
+                hiddenElements.forEach(el => {
+                    el.style.display = '';
+                });
+                
+                element.classList.remove('pdf-mode');
+                overlay.classList.remove('show');
+                loader.classList.remove('show');
+            });
+        }
+
+        function shareOnWhatsApp() {
+            const formData = {
+                shop_name: document.querySelector('[name="shop_name"]').value,
+                full_name: document.querySelector('[name="full_name"]').value,
+                mobile: document.querySelector('[name="mobile"]').value,
+                city: document.querySelector('[name="city"]').value
+            };
+
+            const message = `गीता प्रेस विक्रेता पंजीकरण फॉर्म जमा किया गया\n\nदुकान का नाम: ${formData.shop_name}\nनाम: ${formData.full_name}\nमोबाइल: ${formData.mobile}\nशहर: ${formData.city}`;
+
+            const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
         }
     </script>
 </body>
-
 </html>
