@@ -52,7 +52,6 @@
         .pdf-generating.show { display: block; }
         .pdf-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; display: none; }
         .pdf-overlay.show { display: block; }
-
         /* OPTIMIZED PDF MODE - FITS IN 1-2 PAGES */
         .pdf-mode { padding: 8mm !important; max-width: 100% !important; box-shadow: none !important; }
         .pdf-mode .submit-btn, .pdf-mode .post-submit-actions, .pdf-mode .status-msg { display: none !important; }
@@ -78,7 +77,6 @@
         .pdf-mode textarea { min-height: 40px !important; }
         .pdf-mode .checkbox-group { gap: 8px !important; margin-top: 4px !important; }
         .pdf-mode .checkbox-group label { font-size: 7pt !important; }
-
         @media print {
             body { background: white; padding: 0; font-size: 10pt; margin: 0; }
             .container { box-shadow: none; padding: 8mm; max-width: none; width: 100%; margin: 0; }
@@ -99,7 +97,6 @@
             textarea { min-height: 40px; }
             @page { size: A4; margin: 8mm; }
         }
-
         @media (max-width: 768px) {
             .container { padding: 20px; }
             .row, .date-tally { grid-template-columns: 1fr; }
@@ -108,7 +105,6 @@
             .section-title { font-size: 15px; }
             .checkbox-group { gap: 10px; }
         }
-
         @keyframes progress {
             0% { width: 0%; }
             50% { width: 70%; }
@@ -127,14 +123,12 @@
             </div>
         </div>
     </div>
-
     <div class="container" id="formContainer">
         <div class="header">
             <h1>गीता प्रेस गोरखपुर</h1>
             <h2>दुकानदार/खुदरा विक्रेता पंजीकरण फॉर्म</h2>
             <p>गीता प्रेस प्रकाशनों की बिक्री हेतु</p>
         </div>
-
         <div class="date-tally">
             <div class="form-group">
                 <label>आवेदन दिनांक:</label>
@@ -145,97 +139,83 @@
                 <input type="text" name="tally_code" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
             </div>
         </div>
-
         <div class="section">
             <div class="section-title">व्यवसाय की जानकारी</div>
-
             <div class="form-group">
-                <label>दुकान/व्यवसाय का नाम:</label>
+                <label>दुकान का नाम: <span style="color: red;">*</span></label>
                 <input type="text" name="shop_name" required>
             </div>
-
             <div class="form-group">
-                <label>व्यवसाय का प्रकार:</label>
+                <label>स्वामी/साझेदार/निदेशक का नाम: <span style="color: red;">*</span></label>
+                <input type="text" name="full_name" required>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label>मोबाइल नंबर: <span style="color: red;">*</span></label>
+                    <input type="tel" name="mobile" id="mobile" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10" required>
+                </div>
+                <div class="form-group">
+                    <label>व्हाट्सएप नंबर: <span class="note">(यदि मोबाइल से भिन्न हो)</span></label>
+                    <input type="tel" name="whatsapp" id="whatsapp" placeholder="10 अंकों का व्हाट्सएप नंबर" maxlength="10">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>ईमेल पता: <span style="color: red;">*</span></label>
+                <input type="email" name="email" placeholder="example@email.com" required>
+            </div>
+            <div class="form-group">
+                <label>व्यवसाय का प्रकार: <span style="color: red;">*</span></label>
                 <div class="checkbox-group">
-                    <label><input type="radio" name="business_type" value="proprietorship"> स्वामित्व</label>
+                    <label><input type="radio" name="business_type" value="proprietorship" required> स्वामित्व</label>
                     <label><input type="radio" name="business_type" value="partnership"> साझेदारी</label>
                     <label><input type="radio" name="business_type" value="private_limited"> प्राइवेट लिमिटेड</label>
                     <label><input type="radio" name="business_type" value="llp"> LLP</label>
                 </div>
             </div>
-
             <div class="form-group">
-                <label>दुकान का पूर्ण पता:</label>
-                <textarea name="shop_address" rows="2"></textarea>
+                <label>दुकान का पूर्ण पता: <span style="color: red;">*</span></label>
+                <textarea name="shop_address" rows="2" required></textarea>
             </div>
-
             <div class="form-group">
-                <label>पिनकोड:</label>
-                <input type="text" name="pincode" id="pincode" maxlength="6" pattern="[0-9]{6}" placeholder="6 अंकों का पिनकोड दर्ज करें">
+                <label>पिनकोड: <span style="color: red;">*</span></label>
+                <input type="text" name="pincode" id="pincode" maxlength="6" pattern="[0-9]{6}" placeholder="6 अंकों का पिनकोड दर्ज करें" required>
                 <div class="status-msg loading" id="pincodeLoading">🔄 स्थान विवरण प्राप्त कर रहे हैं...</div>
                 <div class="status-msg error" id="pincodeError">अमान्य पिनकोड या विवरण प्राप्त करने में असमर्थ</div>
                 <div class="status-msg success" id="pincodeSuccess">✓ स्थान विवरण लोड किया गया</div>
             </div>
-
             <div class="row">
                 <div class="form-group">
-                    <label>शहर:</label>
-                    <input type="text" name="city" id="city" placeholder="शहर दर्ज करें">
+                    <label>शहर: <span style="color: red;">*</span></label>
+                    <input type="text" name="city" id="city" placeholder="शहर दर्ज करें" required>
                 </div>
                 <div class="form-group">
-                    <label>राज्य:</label>
-                    <input type="text" name="state" id="state" placeholder="राज्य दर्ज करें">
+                    <label>राज्य: <span style="color: red;">*</span></label>
+                    <input type="text" name="state" id="state" placeholder="राज्य दर्ज करें" required>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
-                    <label>पैन संख्या:</label>
-                    <input type="text" name="pan_business" placeholder="XXXXXXXXXX" maxlength="10">
+                    <label>पैन संख्या: <span style="color: red;">*</span></label>
+                    <input type="text" name="pan_business" id="pan_business" placeholder="ABCDE1234F" maxlength="10" minlength="10" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required style="text-transform: uppercase;">
                 </div>
                 <div class="form-group">
                     <label>जीएसटी संख्या (GSTIN):</label>
                     <input type="text" name="gstin" maxlength="15">
                 </div>
             </div>
-
             <div class="form-group">
-                <label>गीताप्रेस की पुस्तक कब से बेच रहे है:</label>
-                <input type="text" name="establishment_year" placeholder="उदा. 2010 या दस वर्ष" maxlength="50">
+                <label>गीताप्रेस की पुस्तक कब से बेच रहे है: <span style="color: red;">*</span></label>
+                <input type="text" name="establishment_year" placeholder="उदाहरण 2010 या दस वर्ष" maxlength="50" required>
             </div>
-
             <div class="form-group">
-                <label>स्वामी/साझेदार/निदेशक का नाम:</label>
-                <input type="text" name="full_name" required>
+                <label>कुल दुकान क्षेत्रफल (वर्ग फुट): <span style="color: red;">*</span></label>
+                <input type="number" name="shop_area" placeholder="उदाहरण 500" required>
             </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <label>मोबाइल नंबर:</label>
-                    <input type="tel" name="mobile" placeholder="+91 XXXXXXXXXX">
-                </div>
-                <div class="form-group">
-                    <label>व्हाट्सएप नंबर:</label>
-                    <input type="tel" name="whatsapp" placeholder="+91 XXXXXXXXXX">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>ईमेल पता:</label>
-                <input type="email" name="email" placeholder="example@email.com">
-            </div>
-
-            <div class="form-group">
-                <label>कुल दुकान क्षेत्रफल (वर्ग फुट):</label>
-                <input type="number" name="shop_area" placeholder="उदा. 500">
-            </div>
-
             <div class="form-group">
                 <label>दुकान पंजीकरण/लाइसेंस संख्या:</label>
                 <input type="text" name="shop_license" placeholder="लाइसेंस संख्या">
             </div>
         </div>
-
         <div class="declaration">
             <h3>घोषणा एवं शर्तें</h3>
             <p><strong>मैं एतद्द्वारा घोषणा करता/करती हूँ कि:</strong></p>
@@ -247,38 +227,23 @@
                 <li>मैं समय-समय पर गीता प्रेस द्वारा निर्धारित सभी नियमों / डिस्काउंट एवं बोनस शर्तों का पालन करने के लिए सहमत हूँ</li>
             </ol>
         </div>
-
-        <div class="signature-section">
-            <div class="signature-row">
-                <div class="form-group">
-                    <label>दिनांक:</label>
-                    <input type="date" name="declaration_date" id="declaration_date" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
-                </div>
-            </div>
-        </div>
-
+        
         <div class="submit-status" id="submitStatus"></div>
-
         <div class="post-submit-actions" id="postSubmitActions">
             <h3>✓ फॉर्म सफलतापूर्वक जमा हो गया!</h3>
             <p>नीचे दिए गए विकल्पों का उपयोग करें:</p>
             <button onclick="downloadPDF()">📄 फॉर्म को PDF के रूप में डाउनलोड करें</button>
             <button class="whatsapp-btn" onclick="shareOnWhatsApp()">📱 व्हाट्सएप पर भेजें</button>
         </div>
-
         <button type="submit" class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">फॉर्म जमा करें</button>
     </div>
-
     <script>
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZCn12QwqRBNqIojzopfBMNVLV2vq8zaIA01V4ONYxWpIQMk9YuyyQlEW3HCpK1H8J/exec';
-
         window.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('application_date').value = today;
-            document.getElementById('declaration_date').value = today;
             autoFillFromURL();
         });
-
         const fieldMapping = {
             'full_name': 'full_name', 'name': 'full_name', 'mobile': 'mobile', 'whatsapp': 'whatsapp', 
             'email': 'email', 'shop_name': 'shop_name', 'business_name': 'shop_name', 
@@ -289,17 +254,13 @@
             'shop_area': 'shop_area', 'area': 'shop_area', 'shop_license': 'shop_license', 
             'license': 'shop_license', 'tally_code': 'tally_code'
         };
-
         function autoFillFromURL() {
             const urlParams = new URLSearchParams(window.location.search);
             let prefilledCount = 0;
-
             urlParams.forEach((value, key) => {
                 const fieldId = fieldMapping[key.toLowerCase()];
-
                 if (fieldId) {
                     const field = document.querySelector(`[name="${fieldId}"]`);
-
                     if (field) {
                         if (field.type === 'radio') {
                             const radioBtn = document.querySelector(`input[name="${fieldId}"][value="${value.toLowerCase()}"]`);
@@ -313,12 +274,10 @@
                         } else {
                             field.value = value;
                             prefilledCount++;
-
                             if (fieldId === 'pincode' && value.length === 6) {
                                 fetchPincodeDetails(value);
                             }
                         }
-
                         if (field.type !== 'date' && !field.hasAttribute('readonly')) {
                             field.style.backgroundColor = '#e8f5e9';
                             field.style.borderColor = '#4caf50';
@@ -326,19 +285,15 @@
                     }
                 }
             });
-
             if (prefilledCount > 0) {
                 console.log(`✓ ${prefilledCount} fields pre-filled from URL parameters`);
-
                 const notification = document.createElement('div');
                 notification.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #4caf50; color: white; padding: 15px 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; font-size: 14px;';
                 notification.textContent = `✓ ${prefilledCount} फ़ील्ड URL से भरी गई`;
                 document.body.appendChild(notification);
-
                 setTimeout(() => notification.remove(), 3000);
             }
         }
-
         const pincodeInput = document.getElementById('pincode');
         const cityInput = document.getElementById('city');
         const stateInput = document.getElementById('state');
@@ -346,40 +301,30 @@
         const errorMsg = document.getElementById('pincodeError');
         const successMsg = document.getElementById('pincodeSuccess');
         let debounceTimer;
-
         pincodeInput.addEventListener('input', function() {
             const pincode = this.value.trim();
-
             loadingMsg.style.display = 'none';
             errorMsg.style.display = 'none';
             successMsg.style.display = 'none';
             cityInput.value = '';
             stateInput.value = '';
-
             clearTimeout(debounceTimer);
-
             if (pincode.length === 6 && /^\d{6}$/.test(pincode)) {
                 loadingMsg.style.display = 'block';
                 debounceTimer = setTimeout(() => fetchPincodeDetails(pincode), 500);
             }
         });
-
         async function fetchPincodeDetails(pincode) {
             try {
                 const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
-
                 if (!response.ok) throw new Error('API request failed');
-
                 const data = await response.json();
                 loadingMsg.style.display = 'none';
-
                 if (data && data[0] && data[0].Status === 'Success' && data[0].PostOffice && data[0].PostOffice.length > 0) {
                     const postOffice = data[0].PostOffice[0];
-
                     cityInput.value = postOffice.District || postOffice.Block || '';
                     stateInput.value = postOffice.State || '';
                     successMsg.style.display = 'block';
-
                     setTimeout(() => successMsg.style.display = 'none', 3000);
                 } else {
                     errorMsg.textContent = 'पिनकोड नहीं मिला। कृपया शहर और राज्य मैन्युअल रूप से दर्ज करें';
@@ -388,31 +333,63 @@
             } catch (error) {
                 console.error('Error fetching pincode details:', error);
                 loadingMsg.style.display = 'none';
-
                 errorMsg.textContent = 'कृपया शहर और राज्य मैन्युअल रूप से दर्ज करें';
                 errorMsg.style.display = 'block';
-
                 setTimeout(() => errorMsg.style.display = 'none', 5000);
             }
         }
-
         async function handleSubmit(event) {
             event.preventDefault();
-
-            const requiredFields = ['full_name', 'shop_name'];
             const submitBtn = document.getElementById('submitBtn');
             const statusDiv = document.getElementById('submitStatus');
-
             statusDiv.style.display = 'none';
             statusDiv.className = 'submit-status';
 
-            for (let fieldName of requiredFields) {
-                const field = document.querySelector(`[name="${fieldName}"]`);
-                if (!field.value.trim()) {
+            // Validate mobile number
+            const mobileInput = document.getElementById('mobile');
+            const mobile = mobileInput.value.trim();
+            if (!/^[6-9]\d{9}$/.test(mobile)) {
+                mobileInput.style.borderColor = '#d93025';
+                alert('कृपया 10 अंकों का वैध मोबाइल नंबर दर्ज करें');
+                mobileInput.focus();
+                return;
+            }
+            mobileInput.style.borderColor = '#ddd';
+
+            // Validate WhatsApp number if provided
+            const whatsappInput = document.getElementById('whatsapp');
+            const whatsapp = whatsappInput.value.trim();
+            if (whatsapp && !/^[6-9]\d{9}$/.test(whatsapp)) {
+                whatsappInput.style.borderColor = '#d93025';
+                alert('कृपया 10 अंकों का वैध व्हाट्सएप नंबर दर्ज करें');
+                whatsappInput.focus();
+                return;
+            }
+            whatsappInput.style.borderColor = '#ddd';
+
+            // Validate PAN number
+            const panInput = document.getElementById('pan_business');
+            const pan = panInput.value.trim().toUpperCase();
+            if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) {
+                panInput.style.borderColor = '#d93025';
+                alert('कृपया वैध पैन नंबर दर्ज करें (उदाहरण:-ABCDE1234F - 5 अक्षर, 4 अंक, 1 अक्षर)');
+                panInput.focus();
+                return;
+            }
+            panInput.style.borderColor = '#ddd';
+            panInput.value = pan; // Set uppercase value
+
+            // Check required fields
+            const requiredFields = document.querySelectorAll('input[required], textarea[required]');
+            for (let field of requiredFields) {
+                if (!field.value.trim() && field.type !== 'radio') {
                     field.style.borderColor = '#d93025';
-                    alert(`${field.previousElementSibling.textContent.trim() || fieldName} अनिवार्य है!`);
+                    const label = field.closest('.form-group').querySelector('label').textContent.replace('*', '').trim();
+                    alert(`${label} अनिवार्य है!`);
+                    field.focus();
                     return;
                 }
+                field.style.borderColor = '#ddd';
             }
 
             if (!document.querySelector('input[name="business_type"]:checked')) {
@@ -421,11 +398,9 @@
             }
 
             const formData = new FormData();
-
             document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"], textarea').forEach(field => {
                 formData.append(field.name, field.value || '');
             });
-
             ['business_type'].forEach(name => {
                 const checked = document.querySelector(`input[name="${name}"]:checked`);
                 formData.append(name, checked ? checked.value : '');
@@ -433,18 +408,14 @@
 
             submitBtn.disabled = true;
             submitBtn.textContent = 'जमा हो रहा है...';
-
             statusDiv.innerHTML = '<div class="loading">📤 डेटा अपलोड हो रहा है...</div>';
             statusDiv.style.display = 'block';
-
             try {
                 const response = await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
                     body: formData
                 });
-
                 const result = await response.text();
-
                 if (response.ok && result.includes('Success')) {
                     statusDiv.innerHTML = '<div class="success">✓ फॉर्म सफलतापूर्वक जमा हो गया!</div>';
                     document.getElementById('postSubmitActions').style.display = 'block';
@@ -459,7 +430,6 @@
                 submitBtn.textContent = 'फॉर्म जमा करें';
             }
         }
-
         function downloadPDF() {
             const overlay = document.getElementById('pdfOverlay');
             const loader = document.getElementById('pdfGenerating');
@@ -535,7 +505,6 @@
                 loader.classList.remove('show');
             });
         }
-
         function shareOnWhatsApp() {
             const formData = {
                 shop_name: document.querySelector('[name="shop_name"]').value,
@@ -543,9 +512,7 @@
                 mobile: document.querySelector('[name="mobile"]').value,
                 city: document.querySelector('[name="city"]').value
             };
-
             const message = `गीता प्रेस विक्रेता पंजीकरण फॉर्म जमा किया गया\n\nदुकान का नाम: ${formData.shop_name}\nनाम: ${formData.full_name}\nमोबाइल: ${formData.mobile}\nशहर: ${formData.city}`;
-
             const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
         }
