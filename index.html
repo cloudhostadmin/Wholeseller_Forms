@@ -186,7 +186,7 @@
     <div class="container" id="formContainer">
         <div class="header">
             <h1>गीता प्रेस गोरखपुर</h1>
-            <h2>दुकानदार/खुदरा विक्रेता पंजीकरण फॉर्म</h2>
+            <h2>पुस्तक विक्रेता रजिस्ट्रेशन फॉर्म</h2>
             <p>गीता प्रेस प्रकाशनों की बिक्री हेतु</p>
         </div>
         
@@ -222,7 +222,7 @@
                 <input type="email" name="email" placeholder="example@email.com" required>
             </div>
             <div class="form-group">
-                <label>व्यवसाय का प्रकार: <span style="color: red;">*</span></label>
+                <label>व्यवसाय का प्रकार: <span style="color: red;"></span></label>
                 <div class="checkbox-group">
                     <label><input type="radio" name="business_type" value="proprietorship" required> स्वामित्व</label>
                     <label><input type="radio" name="business_type" value="partnership"> साझेदारी</label>
@@ -307,6 +307,13 @@
             <button onclick="downloadPDF()">📄 फॉर्म को PDF के रूप में डाउनलोड करें</button>
             <button class="whatsapp-btn" onclick="shareOnWhatsApp()">📱 व्हाट्सएप पर भेजें</button>
         </div>
+
+        <div style="background: #e3f2fd; padding: 12px 15px; border-radius: 5px; border-left: 4px solid #2196f3; margin-top: 20px; margin-bottom: 15px;">
+            <p style="margin: 0; color: #1565c0; font-size: 14px; font-weight: 600;">
+                ℹ️ कृपया फॉर्म भरने के बाद निचे दिए गए बटन (फॉर्म जमा करें) पर क्लिक करे।
+            </p>
+        </div>
+
         <button type="submit" class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">फॉर्म जमा करें</button>
     </div>
     
