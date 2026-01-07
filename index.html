@@ -53,7 +53,6 @@
         .pdf-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; display: none; }
         .pdf-overlay.show { display: block; }
         
-        /* Enhanced PDF mode styles - Optimized for single page */
         .pdf-mode {
             padding: 10mm 12mm !important;
             box-shadow: none !important;
@@ -175,8 +174,40 @@
         .pdf-mode .status-msg {
             display: none !important;
         }
-        .pdf-mode .note {
-            font-size: 7pt !important;
+        /* PDF mode checkbox/radio styling */
+        .pdf-mode input[type="radio"]:checked::before {
+            content: '✓';
+            display: block;
+            text-align: center;
+            font-weight: bold;
+            color: #000;
+        }
+        .pdf-mode input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            margin-right: 6px;
+            position: relative;
+            background: white;
+        }
+        .pdf-mode input[type="radio"]:checked {
+            background: #ff6b35;
+            border-color: #ff6b35;
+        }
+        .pdf-mode input[type="radio"]:checked::after {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         
         @media (max-width: 768px) {
@@ -240,7 +271,7 @@
                 <input type="email" name="email" placeholder="example@email.com" required>
             </div>
             <div class="form-group">
-                <label>व्यवसाय का प्रकार: <span style="color: red;"></span></label>
+                <label>व्यवसाय का प्रकार:</label>
                 <div class="checkbox-group">
                     <label><input type="radio" name="business_type" value="proprietorship"> स्वामित्व</label>
                     <label><input type="radio" name="business_type" value="partnership"> साझेदारी</label>
@@ -332,7 +363,7 @@
         </div>
         <button type="submit" class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">फॉर्म जमा करें</button>
     </div>
-    
+
     <script>
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylEd89p0mbnZEjVoC_0LKJz7sH2_k7Nw2TYyIettVPa8qJb_-iwvSfrXCaeq8rqrIM7g/exec';
         
@@ -487,11 +518,6 @@
                 field.style.borderColor = '#ddd';
             }
             
-            const businessTypeChecked = document.querySelector('input[name="business_type"]:checked');
-            if (!businessTypeChecked) {
-                alert('व्यवसाय का प्रकार चुनें!');
-                return;
-            }
             submitBtn.disabled = true;
             submitBtn.textContent = 'जमा हो रहा है...';
             statusDiv.innerHTML = '<div class="loading">📤 PDF बना रहे हैं और डेटा अपलोड कर रहे हैं...</div>';
@@ -502,11 +528,18 @@
                 
                 const formDataObj = {};
                 
+                // Get all text, email, tel, date, number inputs and textareas
                 document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"], textarea').forEach(field => {
                     formDataObj[field.name] = field.value || '';
                 });
                 
-                formDataObj['business_type'] = businessTypeChecked ? businessTypeChecked.value : '';
+                // Get business type radio button value
+                const businessTypeChecked = document.querySelector('input[name="business_type"]:checked');
+                if (businessTypeChecked) {
+                    formDataObj['business_type'] = businessTypeChecked.value;
+                } else {
+                    formDataObj['business_type'] = '';
+                }
                 
                 console.log('Form data being sent:', formDataObj);
                 
@@ -551,6 +584,15 @@
         async function generatePDFBase64() {
             return new Promise((resolve, reject) => {
                 const element = document.getElementById('formContainer');
+                
+                // Save current state of radio buttons
+                const radioStates = {};
+                document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    if (radio.checked) {
+                        radioStates[radio.name] = radio.value;
+                    }
+                });
+                
                 element.classList.add('pdf-mode');
                 
                 const hiddenElements = [];
@@ -586,10 +628,24 @@
                 html2pdf().set(opt).from(element).outputPdf('datauristring').then(pdfDataUri => {
                     hiddenElements.forEach(el => el.style.display = '');
                     element.classList.remove('pdf-mode');
+                    
+                    // Restore radio button states
+                    Object.keys(radioStates).forEach(name => {
+                        const radio = document.querySelector(`input[name="${name}"][value="${radioStates[name]}"]`);
+                        if (radio) radio.checked = true;
+                    });
+                    
                     resolve(pdfDataUri.split(',')[1]);
                 }).catch(err => {
                     hiddenElements.forEach(el => el.style.display = '');
                     element.classList.remove('pdf-mode');
+                    
+                    // Restore radio button states even on error
+                    Object.keys(radioStates).forEach(name => {
+                        const radio = document.querySelector(`input[name="${name}"][value="${radioStates[name]}"]`);
+                        if (radio) radio.checked = true;
+                    });
+                    
                     reject(err);
                 });
             });
@@ -603,6 +659,15 @@
             loader.classList.add('show');
             
             const element = document.getElementById('formContainer');
+            
+            // Save current state of radio buttons
+            const radioStates = {};
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                if (radio.checked) {
+                    radioStates[radio.name] = radio.value;
+                }
+            });
+            
             element.classList.add('pdf-mode');
             
             const hiddenElements = [];
@@ -638,6 +703,13 @@
             html2pdf().set(opt).from(element).save().then(() => {
                 hiddenElements.forEach(el => el.style.display = '');
                 element.classList.remove('pdf-mode');
+                
+                // Restore radio button states
+                Object.keys(radioStates).forEach(name => {
+                    const radio = document.querySelector(`input[name="${name}"][value="${radioStates[name]}"]`);
+                    if (radio) radio.checked = true;
+                });
+                
                 setTimeout(() => {
                     overlay.classList.remove('show');
                     loader.classList.remove('show');
@@ -647,6 +719,13 @@
                 alert('PDF बनाने में त्रुटि हुई। कृपया पुनः प्रयास करें।');
                 hiddenElements.forEach(el => el.style.display = '');
                 element.classList.remove('pdf-mode');
+                
+                // Restore radio button states even on error
+                Object.keys(radioStates).forEach(name => {
+                    const radio = document.querySelector(`input[name="${name}"][value="${radioStates[name]}"]`);
+                    if (radio) radio.checked = true;
+                });
+                
                 overlay.classList.remove('show');
                 loader.classList.remove('show');
             });
