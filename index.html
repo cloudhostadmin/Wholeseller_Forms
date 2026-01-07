@@ -53,102 +53,121 @@
         .pdf-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; display: none; }
         .pdf-overlay.show { display: block; }
         
-        /* Enhanced PDF mode styles */
+        /* Enhanced PDF mode styles - Optimized for single page */
         .pdf-mode {
-            padding: 8mm !important;
+            padding: 10mm 12mm !important;
             box-shadow: none !important;
             width: 210mm !important;
             max-width: 210mm !important;
             min-width: 210mm !important;
-            font-size: 9pt !important;
-            line-height: 1.3 !important;
+            font-size: 8.5pt !important;
+            line-height: 1.2 !important;
             background: white !important;
+            margin: 0 !important;
         }
         .pdf-mode * {
             box-sizing: border-box !important;
         }
         .pdf-mode .header {
-            margin-bottom: 8px !important;
-            padding-bottom: 6px !important;
+            margin-bottom: 6mm !important;
+            padding-bottom: 3mm !important;
+            border-bottom-width: 2px !important;
         }
         .pdf-mode .header h1 {
-            font-size: 16pt !important;
-            margin-bottom: 4px !important;
+            font-size: 18pt !important;
+            margin-bottom: 2mm !important;
+            line-height: 1.1 !important;
         }
         .pdf-mode .header h2 {
-            font-size: 11pt !important;
-            margin-bottom: 3px !important;
+            font-size: 12pt !important;
+            margin-bottom: 1.5mm !important;
+            line-height: 1.1 !important;
         }
         .pdf-mode .header p {
-            font-size: 8pt !important;
+            font-size: 8.5pt !important;
+            margin-top: 1mm !important;
         }
         .pdf-mode .tally-code-section {
-            margin-bottom: 8px !important;
+            margin-bottom: 4mm !important;
         }
         .pdf-mode .section {
-            margin-bottom: 6px !important;
+            margin-bottom: 4mm !important;
             page-break-inside: avoid !important;
         }
         .pdf-mode .section-title {
             font-size: 10pt !important;
-            padding: 3px 8px !important;
-            margin-bottom: 6px !important;
+            padding: 2mm 3mm !important;
+            margin-bottom: 3mm !important;
         }
         .pdf-mode .form-group {
-            margin-bottom: 5px !important;
+            margin-bottom: 3mm !important;
         }
         .pdf-mode label {
             font-size: 8pt !important;
-            margin-bottom: 2px !important;
+            margin-bottom: 1mm !important;
+            line-height: 1.2 !important;
         }
         .pdf-mode input,
         .pdf-mode textarea {
-            border: 0.5px solid #333 !important;
+            border: 0.5pt solid #333 !important;
             background: white !important;
             font-size: 8pt !important;
-            padding: 2px 4px !important;
+            padding: 1.5mm 2mm !important;
             min-height: auto !important;
+            line-height: 1.2 !important;
+            border-radius: 1mm !important;
         }
         .pdf-mode textarea {
-            line-height: 1.2 !important;
+            min-height: 12mm !important;
+            line-height: 1.3 !important;
         }
         .pdf-mode .row,
         .pdf-mode .signature-row {
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 8px !important;
+            gap: 3mm !important;
         }
         .pdf-mode .checkbox-group {
-            gap: 8px !important;
+            gap: 3mm !important;
+            font-size: 8pt !important;
+            margin-top: 1.5mm !important;
+        }
+        .pdf-mode .checkbox-group label {
             font-size: 8pt !important;
         }
         .pdf-mode .declaration {
-            padding: 6px !important;
-            margin-bottom: 8px !important;
-            font-size: 7pt !important;
+            padding: 3mm !important;
+            margin-bottom: 4mm !important;
+            font-size: 7.5pt !important;
             page-break-inside: avoid !important;
+            border-left-width: 2mm !important;
         }
         .pdf-mode .declaration h3 {
             font-size: 9pt !important;
-            margin-bottom: 4px !important;
+            margin-bottom: 2mm !important;
+            line-height: 1.2 !important;
         }
         .pdf-mode .declaration p {
-            font-size: 7pt !important;
-            margin-bottom: 3px !important;
+            font-size: 7.5pt !important;
+            margin-bottom: 1.5mm !important;
+            line-height: 1.3 !important;
         }
         .pdf-mode .declaration ol {
-            font-size: 7pt !important;
-            line-height: 1.2 !important;
-            margin-left: 12px !important;
+            font-size: 7.5pt !important;
+            line-height: 1.3 !important;
+            margin-left: 5mm !important;
+            padding-left: 0 !important;
         }
         .pdf-mode .declaration li {
-            margin-bottom: 2px !important;
+            margin-bottom: 1.5mm !important;
+            line-height: 1.3 !important;
         }
         .pdf-mode .signature-section {
-            margin-top: 8px !important;
-            padding-top: 6px !important;
+            margin-top: 4mm !important;
+            padding-top: 3mm !important;
+            border-top-width: 1pt !important;
         }
         .pdf-mode .signature-row {
-            margin-top: 6px !important;
+            margin-top: 3mm !important;
         }
         .pdf-mode .submit-btn,
         .pdf-mode .post-submit-actions,
@@ -182,7 +201,6 @@
             </div>
         </div>
     </div>
-
     <div class="container" id="formContainer">
         <div class="header">
             <h1>गीता प्रेस गोरखपुर</h1>
@@ -224,7 +242,7 @@
             <div class="form-group">
                 <label>व्यवसाय का प्रकार: <span style="color: red;"></span></label>
                 <div class="checkbox-group">
-                    <label><input type="radio" name="business_type" value="proprietorship" required> स्वामित्व</label>
+                    <label><input type="radio" name="business_type" value="proprietorship"> स्वामित्व</label>
                     <label><input type="radio" name="business_type" value="partnership"> साझेदारी</label>
                     <label><input type="radio" name="business_type" value="private_limited"> प्राइवेट लिमिटेड</label>
                     <label><input type="radio" name="business_type" value="llp"> LLP</label>
@@ -307,18 +325,15 @@
             <button onclick="downloadPDF()">📄 फॉर्म को PDF के रूप में डाउनलोड करें</button>
             <button class="whatsapp-btn" onclick="shareOnWhatsApp()">📱 व्हाट्सएप पर भेजें</button>
         </div>
-
         <div style="background: #e3f2fd; padding: 12px 15px; border-radius: 5px; border-left: 4px solid #2196f3; margin-top: 20px; margin-bottom: 15px;">
             <p style="margin: 0; color: #1565c0; font-size: 14px; font-weight: 600;">
                 ℹ️ कृपया फॉर्म भरने के बाद निचे दिए गए बटन (फॉर्म जमा करें) पर क्लिक करे।
             </p>
         </div>
-
         <button type="submit" class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">फॉर्म जमा करें</button>
     </div>
     
     <script>
-        // UPDATE THIS WITH YOUR APPS SCRIPT WEB APP URL
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylEd89p0mbnZEjVoC_0LKJz7sH2_k7Nw2TYyIettVPa8qJb_-iwvSfrXCaeq8rqrIM7g/exec';
         
         window.addEventListener('DOMContentLoaded', function() {
@@ -477,7 +492,6 @@
                 alert('व्यवसाय का प्रकार चुनें!');
                 return;
             }
-            
             submitBtn.disabled = true;
             submitBtn.textContent = 'जमा हो रहा है...';
             statusDiv.innerHTML = '<div class="loading">📤 PDF बना रहे हैं और डेटा अपलोड कर रहे हैं...</div>';
@@ -537,9 +551,6 @@
         async function generatePDFBase64() {
             return new Promise((resolve, reject) => {
                 const element = document.getElementById('formContainer');
-                const originalWidth = element.style.width;
-                const originalMaxWidth = element.style.maxWidth;
-                
                 element.classList.add('pdf-mode');
                 
                 const hiddenElements = [];
@@ -551,51 +562,34 @@
                 });
                 
                 const opt = {
-                    margin: [8, 8, 8, 8],
+                    margin: 0,
                     filename: 'form.pdf',
-                    image: { type: 'jpeg', quality: 0.95 },
+                    image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: {
-                        scale: 3,
+                        scale: 2,
                         useCORS: true,
                         logging: false,
                         letterRendering: true,
-                        allowTaint: false,
                         scrollY: 0,
                         scrollX: 0,
                         backgroundColor: '#ffffff',
-                        windowWidth: 794,
                         width: 794
                     },
                     jsPDF: {
                         unit: 'mm',
                         format: 'a4',
-                        orientation: 'portrait',
-                        compress: true
+                        orientation: 'portrait'
                     },
-                    pagebreak: {
-                        mode: ['avoid-all', 'css'],
-                        avoid: ['.header', '.declaration', '.signature-section', '.section']
-                    }
+                    pagebreak: { mode: ['avoid-all', 'css'], avoid: '.section, .declaration, .signature-section' }
                 };
                 
                 html2pdf().set(opt).from(element).outputPdf('datauristring').then(pdfDataUri => {
-                    hiddenElements.forEach(el => {
-                        el.style.display = '';
-                    });
+                    hiddenElements.forEach(el => el.style.display = '');
                     element.classList.remove('pdf-mode');
-                    element.style.width = originalWidth;
-                    element.style.maxWidth = originalMaxWidth;
-                    
-                    const base64 = pdfDataUri.split(',')[1];
-                    resolve(base64);
+                    resolve(pdfDataUri.split(',')[1]);
                 }).catch(err => {
-                    console.error('PDF generation error:', err);
-                    hiddenElements.forEach(el => {
-                        el.style.display = '';
-                    });
+                    hiddenElements.forEach(el => el.style.display = '');
                     element.classList.remove('pdf-mode');
-                    element.style.width = originalWidth;
-                    element.style.maxWidth = originalMaxWidth;
                     reject(err);
                 });
             });
@@ -609,9 +603,6 @@
             loader.classList.add('show');
             
             const element = document.getElementById('formContainer');
-            const originalWidth = element.style.width;
-            const originalMaxWidth = element.style.maxWidth;
-            
             element.classList.add('pdf-mode');
             
             const hiddenElements = [];
@@ -623,42 +614,30 @@
             });
             
             const opt = {
-                margin: [8, 8, 8, 8],
+                margin: 0,
                 filename: 'Gita_Press_Vikreta_Panjikaran_Form.pdf',
-                image: { type: 'jpeg', quality: 0.95 },
+                image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: {
-                    scale: 3,
+                    scale: 2,
                     useCORS: true,
                     logging: false,
                     letterRendering: true,
-                    allowTaint: false,
                     scrollY: 0,
                     scrollX: 0,
                     backgroundColor: '#ffffff',
-                    windowWidth: 794,
                     width: 794
                 },
                 jsPDF: {
                     unit: 'mm',
                     format: 'a4',
-                    orientation: 'portrait',
-                    compress: true
+                    orientation: 'portrait'
                 },
-                pagebreak: {
-                    mode: ['avoid-all', 'css'],
-                    avoid: ['.header', '.declaration', '.signature-section', '.section']
-                }
+                pagebreak: { mode: ['avoid-all', 'css'], avoid: '.section, .declaration, .signature-section' }
             };
             
             html2pdf().set(opt).from(element).save().then(() => {
-                hiddenElements.forEach(el => {
-                    el.style.display = '';
-                });
-                
+                hiddenElements.forEach(el => el.style.display = '');
                 element.classList.remove('pdf-mode');
-                element.style.width = originalWidth;
-                element.style.maxWidth = originalMaxWidth;
-                
                 setTimeout(() => {
                     overlay.classList.remove('show');
                     loader.classList.remove('show');
@@ -666,14 +645,8 @@
             }).catch(err => {
                 console.error('PDF generation error:', err);
                 alert('PDF बनाने में त्रुटि हुई। कृपया पुनः प्रयास करें।');
-                
-                hiddenElements.forEach(el => {
-                    el.style.display = '';
-                });
-                
+                hiddenElements.forEach(el => el.style.display = '');
                 element.classList.remove('pdf-mode');
-                element.style.width = originalWidth;
-                element.style.maxWidth = originalMaxWidth;
                 overlay.classList.remove('show');
                 loader.classList.remove('show');
             });
