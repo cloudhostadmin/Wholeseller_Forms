@@ -53,14 +53,15 @@
         .pdf-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; display: none; }
         .pdf-overlay.show { display: block; }
         
+        /* PDF Mode - Optimized for single page */
         .pdf-mode {
-            padding: 10mm 12mm !important;
+            padding: 6mm 8mm !important;
             box-shadow: none !important;
             width: 210mm !important;
             max-width: 210mm !important;
             min-width: 210mm !important;
-            font-size: 8.5pt !important;
-            line-height: 1.2 !important;
+            font-size: 7pt !important;
+            line-height: 1.1 !important;
             background: white !important;
             margin: 0 !important;
         }
@@ -68,113 +69,113 @@
             box-sizing: border-box !important;
         }
         .pdf-mode .header {
-            margin-bottom: 6mm !important;
-            padding-bottom: 3mm !important;
-            border-bottom-width: 2px !important;
+            margin-bottom: 3mm !important;
+            padding-bottom: 1.5mm !important;
+            border-bottom-width: 1px !important;
         }
         .pdf-mode .header h1 {
-            font-size: 18pt !important;
-            margin-bottom: 2mm !important;
-            line-height: 1.1 !important;
+            font-size: 14pt !important;
+            margin-bottom: 1mm !important;
+            line-height: 1 !important;
         }
         .pdf-mode .header h2 {
-            font-size: 12pt !important;
-            margin-bottom: 1.5mm !important;
-            line-height: 1.1 !important;
+            font-size: 10pt !important;
+            margin-bottom: 0.8mm !important;
+            line-height: 1 !important;
         }
         .pdf-mode .header p {
-            font-size: 8.5pt !important;
-            margin-top: 1mm !important;
+            font-size: 7pt !important;
+            margin-top: 0.5mm !important;
         }
         .pdf-mode .tally-code-section {
-            margin-bottom: 4mm !important;
+            margin-bottom: 2.5mm !important;
         }
         .pdf-mode .section {
-            margin-bottom: 4mm !important;
+            margin-bottom: 2.5mm !important;
             page-break-inside: avoid !important;
         }
         .pdf-mode .section-title {
-            font-size: 10pt !important;
-            padding: 2mm 3mm !important;
-            margin-bottom: 3mm !important;
+            font-size: 8.5pt !important;
+            padding: 1.2mm 2mm !important;
+            margin-bottom: 2mm !important;
         }
         .pdf-mode .form-group {
-            margin-bottom: 3mm !important;
+            margin-bottom: 1.8mm !important;
         }
         .pdf-mode label {
-            font-size: 8pt !important;
-            margin-bottom: 1mm !important;
-            line-height: 1.2 !important;
+            font-size: 6.5pt !important;
+            margin-bottom: 0.6mm !important;
+            line-height: 1.05 !important;
         }
         .pdf-mode input,
         .pdf-mode textarea {
-            border: 0.5pt solid #333 !important;
+            border: 0.3pt solid #333 !important;
             background: white !important;
-            font-size: 8pt !important;
-            padding: 1.5mm 2mm !important;
+            font-size: 7pt !important;
+            padding: 0.8mm 1.2mm !important;
             min-height: auto !important;
-            line-height: 1.2 !important;
-            border-radius: 1mm !important;
+            line-height: 1.1 !important;
+            border-radius: 0.5mm !important;
         }
         .pdf-mode textarea {
-            min-height: 12mm !important;
-            line-height: 1.3 !important;
+            min-height: 8mm !important;
+            line-height: 1.15 !important;
         }
         .pdf-mode .row,
         .pdf-mode .signature-row {
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 3mm !important;
+            gap: 2mm !important;
         }
         .pdf-mode .checkbox-group {
-            gap: 3mm !important;
-            font-size: 8pt !important;
-            margin-top: 1.5mm !important;
+            gap: 2mm !important;
+            font-size: 6.5pt !important;
+            margin-top: 0.8mm !important;
         }
         .pdf-mode .checkbox-group label {
-            font-size: 8pt !important;
+            font-size: 6.5pt !important;
         }
         .pdf-mode .declaration {
-            padding: 3mm !important;
-            margin-bottom: 4mm !important;
-            font-size: 7.5pt !important;
+            padding: 2mm !important;
+            margin-bottom: 2.5mm !important;
+            font-size: 6pt !important;
             page-break-inside: avoid !important;
-            border-left-width: 2mm !important;
+            border-left-width: 1.2mm !important;
         }
         .pdf-mode .declaration h3 {
-            font-size: 9pt !important;
-            margin-bottom: 2mm !important;
-            line-height: 1.2 !important;
+            font-size: 7.5pt !important;
+            margin-bottom: 1.2mm !important;
+            line-height: 1.1 !important;
         }
         .pdf-mode .declaration p {
-            font-size: 7.5pt !important;
-            margin-bottom: 1.5mm !important;
-            line-height: 1.3 !important;
+            font-size: 6pt !important;
+            margin-bottom: 0.8mm !important;
+            line-height: 1.2 !important;
         }
         .pdf-mode .declaration ol {
-            font-size: 7.5pt !important;
-            line-height: 1.3 !important;
-            margin-left: 5mm !important;
+            font-size: 6pt !important;
+            line-height: 1.15 !important;
+            margin-left: 3.5mm !important;
             padding-left: 0 !important;
         }
         .pdf-mode .declaration li {
-            margin-bottom: 1.5mm !important;
-            line-height: 1.3 !important;
+            margin-bottom: 0.8mm !important;
+            line-height: 1.15 !important;
         }
         .pdf-mode .signature-section {
-            margin-top: 4mm !important;
-            padding-top: 3mm !important;
-            border-top-width: 1pt !important;
+            margin-top: 2.5mm !important;
+            padding-top: 2mm !important;
+            border-top-width: 0.6pt !important;
         }
         .pdf-mode .signature-row {
-            margin-top: 3mm !important;
+            margin-top: 2mm !important;
         }
         .pdf-mode .submit-btn,
         .pdf-mode .post-submit-actions,
         .pdf-mode .submit-status,
-        .pdf-mode .status-msg {
+        .pdf-mode .status-msg,
+        .pdf-mode .info-box {
             display: none !important;
         }
-        /* PDF mode checkbox/radio styling */
         .pdf-mode input[type="radio"]:checked::before {
             content: '✓';
             display: block;
@@ -185,11 +186,11 @@
         .pdf-mode input[type="radio"] {
             appearance: none;
             -webkit-appearance: none;
-            width: 12px;
-            height: 12px;
-            border: 1px solid #333;
+            width: 11px;
+            height: 11px;
+            border: 0.8px solid #333;
             border-radius: 50%;
-            margin-right: 6px;
+            margin-right: 5px;
             position: relative;
             background: white;
         }
@@ -200,8 +201,8 @@
         .pdf-mode input[type="radio"]:checked::after {
             content: '';
             display: block;
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             background: white;
             border-radius: 50%;
             position: absolute;
@@ -248,6 +249,10 @@
         
         <div class="section">
             <div class="section-title">व्यवसाय की जानकारी</div>
+            <div class="form-group">
+                <label>शाखा का नाम (जिस शाखा से आप पुस्तकें खरीदते हैं): <span style="color: red;">*</span></label>
+                <input type="text" name="branch_name" required>
+            </div>
             <div class="form-group">
                 <label>दुकान का नाम: <span style="color: red;">*</span></label>
                 <input type="text" name="shop_name" required>
@@ -356,16 +361,15 @@
             <button onclick="downloadPDF()">📄 फॉर्म को PDF के रूप में डाउनलोड करें</button>
             <button class="whatsapp-btn" onclick="shareOnWhatsApp()">📱 व्हाट्सएप पर भेजें</button>
         </div>
-        <div style="background: #e3f2fd; padding: 12px 15px; border-radius: 5px; border-left: 4px solid #2196f3; margin-top: 20px; margin-bottom: 15px;">
+        <div class="info-box" style="background: #e3f2fd; padding: 12px 15px; border-radius: 5px; border-left: 4px solid #2196f3; margin-top: 20px; margin-bottom: 15px;">
             <p style="margin: 0; color: #1565c0; font-size: 14px; font-weight: 600;">
                 ℹ️ कृपया फॉर्म भरने के बाद निचे दिए गए बटन (फॉर्म जमा करें) पर क्लिक करे।
             </p>
         </div>
         <button type="submit" class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">फॉर्म जमा करें</button>
     </div>
-
     <script>
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylEd89p0mbnZEjVoC_0LKJz7sH2_k7Nw2TYyIettVPa8qJb_-iwvSfrXCaeq8rqrIM7g/exec';
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwk3iEVYzSs5UwfRRCzAS7Hty1ygZM2PKMZGg2GoT2TcKMliC0dyXm_Y-vsLKWoOKBI/exec';
         
         window.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toISOString().split('T')[0];
@@ -374,14 +378,25 @@
         });
         
         const fieldMapping = {
-            'full_name': 'full_name', 'name': 'full_name', 'mobile': 'mobile', 'whatsapp': 'whatsapp',
-            'email': 'email', 'shop_name': 'shop_name', 'business_name': 'shop_name',
-            'business_type': 'business_type', 'shop_address': 'shop_address', 'address': 'shop_address',
-            'pincode': 'pincode', 'pin': 'pincode', 'city': 'city', 'state': 'state',
-            'pan_business': 'pan_business', 'gstin': 'gstin', 'gst': 'gstin',
+            'tally_code': 'tally_code',
+            'branch_name': 'branch_name', 'branch': 'branch_name',
+            'shop_name': 'shop_name', 'business_name': 'shop_name',
+            'full_name': 'full_name', 'name': 'full_name',
+            'mobile': 'mobile',
+            'whatsapp': 'whatsapp',
+            'email': 'email',
+            'business_type': 'business_type',
+            'shop_address': 'shop_address', 'address': 'shop_address',
+            'pincode': 'pincode', 'pin': 'pincode',
+            'city': 'city',
+            'state': 'state',
+            'pan_business': 'pan_business', 'pan': 'pan_business',
+            'gstin': 'gstin', 'gst': 'gstin',
             'establishment_year': 'establishment_year', 'year': 'establishment_year',
-            'shop_area': 'shop_area', 'area': 'shop_area', 'shop_license': 'shop_license',
-            'license': 'shop_license', 'tally_code': 'tally_code'
+            'shop_area': 'shop_area', 'area': 'shop_area',
+            'shop_license': 'shop_license', 'license': 'shop_license',
+            'application_date': 'application_date',
+            'applicant_signature': 'applicant_signature'
         };
         
         function autoFillFromURL() {
@@ -528,12 +543,10 @@
                 
                 const formDataObj = {};
                 
-                // Get all text, email, tel, date, number inputs and textareas
                 document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"], textarea').forEach(field => {
                     formDataObj[field.name] = field.value || '';
                 });
                 
-                // Get business type radio button value
                 const businessTypeChecked = document.querySelector('input[name="business_type"]:checked');
                 if (businessTypeChecked) {
                     formDataObj['business_type'] = businessTypeChecked.value;
@@ -585,7 +598,6 @@
             return new Promise((resolve, reject) => {
                 const element = document.getElementById('formContainer');
                 
-                // Save current state of radio buttons
                 const radioStates = {};
                 document.querySelectorAll('input[type="radio"]').forEach(radio => {
                     if (radio.checked) {
@@ -596,7 +608,7 @@
                 element.classList.add('pdf-mode');
                 
                 const hiddenElements = [];
-                document.querySelectorAll('.submit-btn, .post-submit-actions, .submit-status, .status-msg').forEach(el => {
+                document.querySelectorAll('.submit-btn, .post-submit-actions, .submit-status, .status-msg, .info-box').forEach(el => {
                     if (el.style.display !== 'none') {
                         hiddenElements.push(el);
                         el.style.display = 'none';
@@ -608,28 +620,30 @@
                     filename: 'form.pdf',
                     image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: {
-                        scale: 2,
+                        scale: 2.5,
                         useCORS: true,
                         logging: false,
                         letterRendering: true,
                         scrollY: 0,
                         scrollX: 0,
                         backgroundColor: '#ffffff',
-                        width: 794
+                        width: 794,
+                        windowWidth: 794,
+                        height: window.innerHeight
                     },
                     jsPDF: {
                         unit: 'mm',
                         format: 'a4',
-                        orientation: 'portrait'
+                        orientation: 'portrait',
+                        compress: true
                     },
-                    pagebreak: { mode: ['avoid-all', 'css'], avoid: '.section, .declaration, .signature-section' }
+                    pagebreak: { mode: 'css', before: '.page-break' }
                 };
                 
                 html2pdf().set(opt).from(element).outputPdf('datauristring').then(pdfDataUri => {
                     hiddenElements.forEach(el => el.style.display = '');
                     element.classList.remove('pdf-mode');
                     
-                    // Restore radio button states
                     Object.keys(radioStates).forEach(name => {
                         const radio = document.querySelector(`input[name="${name}"][value="${radioStates[name]}"]`);
                         if (radio) radio.checked = true;
@@ -640,7 +654,6 @@
                     hiddenElements.forEach(el => el.style.display = '');
                     element.classList.remove('pdf-mode');
                     
-                    // Restore radio button states even on error
                     Object.keys(radioStates).forEach(name => {
                         const radio = document.querySelector(`input[name="${name}"][value="${radioStates[name]}"]`);
                         if (radio) radio.checked = true;
@@ -660,7 +673,6 @@
             
             const element = document.getElementById('formContainer');
             
-            // Save current state of radio buttons
             const radioStates = {};
             document.querySelectorAll('input[type="radio"]').forEach(radio => {
                 if (radio.checked) {
@@ -671,7 +683,7 @@
             element.classList.add('pdf-mode');
             
             const hiddenElements = [];
-            document.querySelectorAll('.submit-btn, .post-submit-actions, .submit-status, .status-msg').forEach(el => {
+            document.querySelectorAll('.submit-btn, .post-submit-actions, .submit-status, .status-msg, .info-box').forEach(el => {
                 if (el.style.display !== 'none') {
                     hiddenElements.push(el);
                     el.style.display = 'none';
@@ -683,28 +695,30 @@
                 filename: 'Gita_Press_Vikreta_Panjikaran_Form.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: {
-                    scale: 2,
+                    scale: 2.5,
                     useCORS: true,
                     logging: false,
                     letterRendering: true,
                     scrollY: 0,
                     scrollX: 0,
                     backgroundColor: '#ffffff',
-                    width: 794
+                    width: 794,
+                    windowWidth: 794,
+                    height: window.innerHeight
                 },
                 jsPDF: {
                     unit: 'mm',
                     format: 'a4',
-                    orientation: 'portrait'
+                    orientation: 'portrait',
+                    compress: true
                 },
-                pagebreak: { mode: ['avoid-all', 'css'], avoid: '.section, .declaration, .signature-section' }
+                pagebreak: { mode: 'css', before: '.page-break' }
             };
             
             html2pdf().set(opt).from(element).save().then(() => {
                 hiddenElements.forEach(el => el.style.display = '');
                 element.classList.remove('pdf-mode');
                 
-                // Restore radio button states
                 Object.keys(radioStates).forEach(name => {
                     const radio = document.querySelector(`input[name="${name}"][value="${radioStates[name]}"]`);
                     if (radio) radio.checked = true;
@@ -720,7 +734,6 @@
                 hiddenElements.forEach(el => el.style.display = '');
                 element.classList.remove('pdf-mode');
                 
-                // Restore radio button states even on error
                 Object.keys(radioStates).forEach(name => {
                     const radio = document.querySelector(`input[name="${name}"][value="${radioStates[name]}"]`);
                     if (radio) radio.checked = true;
@@ -733,16 +746,16 @@
         
         function shareOnWhatsApp() {
             const formData = {
+                branch_name: document.querySelector('[name="branch_name"]').value,
                 shop_name: document.querySelector('[name="shop_name"]').value,
                 full_name: document.querySelector('[name="full_name"]').value,
                 mobile: document.querySelector('[name="mobile"]').value,
                 city: document.querySelector('[name="city"]').value
             };
-            const message = `गीता प्रेस विक्रेता पंजीकरण फॉर्म जमा किया गया\n\nदुकान का नाम: ${formData.shop_name}\nनाम: ${formData.full_name}\nमोबाइल: ${formData.mobile}\nशहर: ${formData.city}`;
+            const message = `गीता प्रेस विक्रेता पंजीकरण फॉर्म जमा किया गया\n\nशाखा: ${formData.branch_name}\nदुकान का नाम: ${formData.shop_name}\nनाम: ${formData.full_name}\nमोबाइल: ${formData.mobile}\nशहर: ${formData.city}`;
             const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
         }
     </script>
 </body>
 </html>
-
